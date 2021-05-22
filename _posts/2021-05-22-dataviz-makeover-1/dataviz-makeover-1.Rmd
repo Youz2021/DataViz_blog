@@ -1,7 +1,7 @@
 ---
 title: "DataViz Makeover 1"
 description: |
-  A short description of the post.
+  Explore different perspectives in Merchandise Trade by Region/Market Report.
 author:
   - name: Youzhen Zhang
     url: https://example.com/norajones
@@ -16,12 +16,13 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-# 1.0 Overview
+# 1. Overview
 
-In this article, we will show you how to plot a figure with multiple histograms by using [**ggplot2**](https://ggplot2.tidyverse.org/) and **ggpubr** packages. 
+The original visualisation below is created by using [Merchandise Trade by Region/Market](https://www.singstat.gov.sg/find-data/search-by-theme/trade-and-investment/merchandise-trade/latest-data) data provided by Department of Statistics, Singapore (DOS). In this post, this visualisation will be evaluated in terms of clarity and aesthetics. Also, an makeover of this graph will be provided.
+![](img/original_visualisation.png)
 
 
-# 2.0 Installing and Launching R Packages
+# 2. Installing and Launching R Packages
 
 Before you get started, you are required:
 
@@ -30,7 +31,7 @@ Before you get started, you are required:
 
 Figure below shows the quarter plot of Tableau.
 
-![](quarter_analysis.png)
+
 
 
 Next, you will use the code chunk below to install and launch ggpubr and tidyverse in RStudio.
