@@ -53,24 +53,24 @@ The original visualisation below is created by using [Merchandise Trade by Regio
 
 1. Remove unnecessary columns
 Delete useless columns, only keep column Variables and columns from 2019 Jan to 2020 Dec using Excel.
-![](img/delete_columns.png)
+![](img/delete_columns.png){width=90%}
 
 
 2. Remove useless rows
 Remove unnecessary rows using Excel.
-![](img/delete_rows.png)
+![](img/delete_rows.png){width=90%}
 
 3. Import into Tableau & Create data pivot
 After importing data file into Tableau, the data from January 2019 to December 2020 are spread across multiple columns. Then, we can create a flat file to get a target view by selecting the columns from 2019 Jan to 2020 Dec, right click and selecting pivot.
-![](img/import_pivot.png)
+![](img/import_pivot.png){width=90%}
 
 4. Rename column headers
 Rename 'Variables' to 'Region'. Rename 'Pivot Field Names' to 'Month of Period'. Rename 'Pivot Field Values' to 'rade Values'.
-![](img/rename_headers.png)
+![](img/rename_headers.png){width=90%}
 
 5. Change data type
 Change 'Region' data type to 'Geographic Role - Country/Region'. Change 'Month of Period' data type to 'Date'. Change 'Trade Values' data type to 'Number(Whole)'.
-![](img/change_region.png)
+![](img/change_region.png){width=90%}
 
 
 **Merchandise Exports By Region/Market, Monthly**
