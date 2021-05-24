@@ -37,9 +37,10 @@ The original visualisation below is created by using [Merchandise Trade by Regio
 |**S/N** |          **Critiques**         |     **Comments**     |
 |:--|:-----------------------------------------------|:--------------------------|
 | 1  |The font size and location of each region label –  Font size of the label should be smaller than the title of the graph's. The location of the label should be at the center to indicate the related area graph clearly.      | Change the font size of the region label smaller than the font size of title and move the label to the center of each area graph. |
-| 2  |Six area graphs are redundant –  It is not necessary to use six area graphs in this visualisation since the six area graphs have same coordinate axis and layouts.     | Only keep one graph to show values with same coordinate axis and layouts.  |
-| 3  |Colors used to differentiate the import and export merchandise trade do not highlight the graph – Colors used should be with higher degree of contrast to easy highlight the graph.      | Use colors with higher degree of contrast to differentiate the graph. |
-|4  |Multiple unit measurement of Y axis used in the graph –  unit measurement of Y axis may make reader be confused.   | Keep the unit measurement of both Y axis and X axis uniform.  |
+| 2  |Six area graphs are redundant –  It is not necessary to use six area graphs in the visualisation since the six area graphs have same coordinate axis and layouts. | Only keep one graph to show values with same coordinate axis and layouts.|
+| 3  |Colors used to differentiate the import and export merchandise trade do not highlight the graph – Colors used should be with higher degree of contrast to easy highlight the graph.| Use colors with higher degree of contrast to differentiate the graph. |
+|4  |Multiple unit measurements of Y axis used in the graph –  different unit measurements of Y axis may make readers be confused. | Keep the unit measurements of both Y axis and X axis uniform.  |
+
 
 # 3. Proposed Design
 
@@ -48,7 +49,38 @@ The original visualisation below is created by using [Merchandise Trade by Regio
 
 ### 4.1 **Data preparation**
 
+**Data: Merchandise Imports By Region/Market, Monthly**
 
+1. Remove unnecessary columns
+Delete useless columns, only keep column Variables and columns from 2019 Jan to 2020 Dec using Excel.
+![](img/delete_columns.png)
+
+
+2. Remove useless rows
+Remove unnecessary rows using Excel.
+![](img/delete_rows.png)
+
+3. Import into Tableau & Create data pivot
+After importing data file into Tableau, the data from January 2019 to December 2020 are spread across multiple columns. Then, we can create a flat file to get a target view by selecting the columns from 2019 Jan to 2020 Dec, right click and selecting pivot.
+![](img/import_pivot.png)
+
+4. Rename column headers
+Rename 'Variables' to 'Region'. Rename 'Pivot Field Names' to 'Month of Period'. Rename 'Pivot Field Values' to 'rade Values'.
+![](img/rename_headers.png)
+
+5. Change data type
+Change 'Region' data type to 'Geographic Role - Country/Region'. Change 'Month of Period' data type to 'Date'. Change 'Trade Values' data type to 'Number(Whole)'.
+![](img/change_region.png)
+
+
+**Merchandise Exports By Region/Market, Monthly**
+
+1. Tidy data and format data
+
+Repeat steps 1 to 5 as done for data 'Merchandise Exports By Region/Market, Monthly' above.
+
+
+### 4.1 **Data visualisation**
 
 
 

@@ -116,7 +116,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["dataviz-makeover-1_files/anchor-4.2.2/anchor.min.js","dataviz-makeover-1_files/bowser-1.9.3/bowser.min.js","dataviz-makeover-1_files/distill-2.2.21/template.v2.js","dataviz-makeover-1_files/header-attrs-2.8/header-attrs.js","dataviz-makeover-1_files/jquery-1.11.3/jquery.min.js","dataviz-makeover-1_files/popper-2.6.0/popper.min.js","dataviz-makeover-1_files/tippy-6.2.7/tippy-bundle.umd.min.js","dataviz-makeover-1_files/tippy-6.2.7/tippy-light-border.css","dataviz-makeover-1_files/tippy-6.2.7/tippy.css","dataviz-makeover-1_files/tippy-6.2.7/tippy.umd.min.js","dataviz-makeover-1_files/webcomponents-2.0.0/webcomponents.js","img/Clarity.png","img/original_visualisation.png"]}
+  {"type":"character","attributes":{},"value":["dataviz-makeover-1_files/anchor-4.2.2/anchor.min.js","dataviz-makeover-1_files/bowser-1.9.3/bowser.min.js","dataviz-makeover-1_files/distill-2.2.21/template.v2.js","dataviz-makeover-1_files/header-attrs-2.8/header-attrs.js","dataviz-makeover-1_files/jquery-1.11.3/jquery.min.js","dataviz-makeover-1_files/popper-2.6.0/popper.min.js","dataviz-makeover-1_files/tippy-6.2.7/tippy-bundle.umd.min.js","dataviz-makeover-1_files/tippy-6.2.7/tippy-light-border.css","dataviz-makeover-1_files/tippy-6.2.7/tippy.css","dataviz-makeover-1_files/tippy-6.2.7/tippy.umd.min.js","dataviz-makeover-1_files/webcomponents-2.0.0/webcomponents.js","img/change_region.png","img/Clarity.png","img/delete_columns.png","img/delete_other_regions.png","img/delete_rows.png","img/edit_values.png","img/import_pivot.png","img/keep_six_regions.png","img/original_visualisation.png","img/remove_columns_rows.png","img/rename_headers.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1540,7 +1540,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </tr>
 <tr class="even">
 <td style="text-align: left;">2</td>
-<td style="text-align: left;">Six area graphs are redundant – It is not necessary to use six area graphs in this visualisation since the six area graphs have same coordinate axis and layouts.</td>
+<td style="text-align: left;">Six area graphs are redundant – It is not necessary to use six area graphs in the visualisation since the six area graphs have same coordinate axis and layouts.</td>
 <td style="text-align: left;">Only keep one graph to show values with same coordinate axis and layouts.</td>
 </tr>
 <tr class="odd">
@@ -1550,14 +1550,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </tr>
 <tr class="even">
 <td style="text-align: left;">4</td>
-<td style="text-align: left;">Multiple unit measurement of Y axis used in the graph – unit measurement of Y axis may make reader be confused.</td>
-<td style="text-align: left;">Keep the unit measurement of both Y axis and X axis uniform.</td>
+<td style="text-align: left;">Multiple unit measurements of Y axis used in the graph – different unit measurements of Y axis may make readers be confused.</td>
+<td style="text-align: left;">Keep the unit measurements of both Y axis and X axis uniform.</td>
 </tr>
 </tbody>
 </table>
 <h1 id="proposed-design">3. Proposed Design</h1>
 <h1 id="data-visualisation-steps">4. Data Visualisation Steps</h1>
 <h3 id="data-preparation">4.1 <strong>Data preparation</strong></h3>
+<p><strong>Data: Merchandise Imports By Region/Market, Monthly</strong></p>
+<ol type="1">
+<li><p>Remove unnecessary columns Delete useless columns, only keep column Variables and columns from 2019 Jan to 2020 Dec using Excel. <img src="img/delete_columns.png" /></p></li>
+<li><p>Remove useless rows Remove unnecessary rows using Excel. <img src="img/delete_rows.png" /></p></li>
+<li><p>Import into Tableau &amp; Create data pivot After importing data file into Tableau, the data from January 2019 to December 2020 are spread across multiple columns. Then, we can create a flat file to get a target view by selecting the columns from 2019 Jan to 2020 Dec, right click and selecting pivot. <img src="img/import_pivot.png" /></p></li>
+<li><p>Rename column headers Rename ‘Variables’ to ‘Region’. Rename ‘Pivot Field Names’ to ‘Month of Period’. Rename ‘Pivot Field Values’ to ‘rade Values’. <img src="img/rename_headers.png" /></p></li>
+<li><p>Change data type Change ‘Region’ data type to ‘Geographic Role - Country/Region’. Change ‘Month of Period’ data type to ‘Date’. Change ‘Trade Values’ data type to ‘Number(Whole)’. <img src="img/change_region.png" /></p></li>
+</ol>
+<p><strong>Merchandise Exports By Region/Market, Monthly</strong></p>
+<ol type="1">
+<li>Tidy data and format data Repeat steps 1 to 5 as done for data ‘Merchandise Exports By Region/Market, Monthly’ above.</li>
+</ol>
+<h3 id="data-visualisation">4.1 <strong>Data visualisation</strong></h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
