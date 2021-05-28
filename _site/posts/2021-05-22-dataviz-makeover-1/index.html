@@ -117,7 +117,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["dataviz-makeover-1_files/anchor-4.2.2/anchor.min.js","dataviz-makeover-1_files/bowser-1.9.3/bowser.min.js","dataviz-makeover-1_files/distill-2.2.21/template.v2.js","dataviz-makeover-1_files/header-attrs-2.8/header-attrs.js","dataviz-makeover-1_files/jquery-1.11.3/jquery.min.js","dataviz-makeover-1_files/popper-2.6.0/popper.min.js","dataviz-makeover-1_files/tippy-6.2.7/tippy-bundle.umd.min.js","dataviz-makeover-1_files/tippy-6.2.7/tippy-light-border.css","dataviz-makeover-1_files/tippy-6.2.7/tippy.css","dataviz-makeover-1_files/tippy-6.2.7/tippy.umd.min.js","dataviz-makeover-1_files/webcomponents-2.0.0/webcomponents.js","img/change_region.png","img/Clarity.png","img/delete_columns.png","img/delete_other_regions.png","img/delete_rows.png","img/edit_values.png","img/import_pivot.png","img/keep_six_regions.png","img/original_visualisation.png","img/remove_columns_rows.png","img/rename_headers.png"]}
+  {"type":"character","attributes":{},"value":["dataviz-makeover-1_files/anchor-4.2.2/anchor.min.js","dataviz-makeover-1_files/bowser-1.9.3/bowser.min.js","dataviz-makeover-1_files/distill-2.2.21/template.v2.js","dataviz-makeover-1_files/header-attrs-2.8/header-attrs.js","dataviz-makeover-1_files/jquery-1.11.3/jquery.min.js","dataviz-makeover-1_files/popper-2.6.0/popper.min.js","dataviz-makeover-1_files/tippy-6.2.7/tippy-bundle.umd.min.js","dataviz-makeover-1_files/tippy-6.2.7/tippy-light-border.css","dataviz-makeover-1_files/tippy-6.2.7/tippy.css","dataviz-makeover-1_files/tippy-6.2.7/tippy.umd.min.js","dataviz-makeover-1_files/webcomponents-2.0.0/webcomponents.js","img/bar_chart.png","img/calculate_field.png","img/change_region.png","img/Clarity.png","img/color_import.png","img/create_new_field.png","img/delete_columns.png","img/delete_other_regions.png","img/delete_rows.png","img/design.jpg","img/drag_import.png","img/edit_values.png","img/Export_Trade_line.png","img/filter_import.png","img/final_dashboard.png","img/import_pivot.png","img/Import_Trade_line.png","img/keep_six_regions.png","img/original_visualisation.png","img/remove_columns_rows.png","img/rename_headers.png","img/total_trade_bar.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2123,8 +2123,8 @@ document.addEventListener('DOMContentLoaded', function() {
 </tr>
 <tr class="even">
 <td style="text-align: left;">2</td>
-<td style="text-align: left;">The scale of X axis is not correct – The scale of X axis should be from 2019 to 2021 that is inconsistent with the title of the graph. Also, the scale of values on X axis is year that is against the title of X axis.</td>
-<td style="text-align: left;">Modify the scale of X axis of the graph only from 2019 to 2020 as presented in the title of the graph and change the scale of values on X axis to be month.</td>
+<td style="text-align: left;">The scale of X axis is not correct – The scale of X axis is from 2019 to 2021 that is inconsistent with the title of the graph. Also, the scale of values on X axis is year that is against the title of X axis.</td>
+<td style="text-align: left;">Modify the scale of X axis of the graph only from 2019 to 2020 as presented in the title of the graph and change the scale of values on X axis to be year of period.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">3</td>
@@ -2176,22 +2176,112 @@ document.addEventListener('DOMContentLoaded', function() {
 </tbody>
 </table>
 <h1 id="proposed-design">3. Proposed Design</h1>
+<p><img src="img/design.jpg" style="width:90.0%" /></p>
 <h1 id="data-visualisation-steps">4. Data Visualisation Steps</h1>
 <h3 id="data-preparation">4.1 <strong>Data preparation</strong></h3>
 <p><strong>Data: Merchandise Imports By Region/Market, Monthly</strong></p>
 <ol type="1">
-<li><p>Remove unnecessary columns Delete useless columns, only keep column Variables and columns from 2019 Jan to 2020 Dec using Excel. <img src="img/delete_columns.png" style="width:90.0%" /></p></li>
-<li><p>Remove useless rows Remove unnecessary rows using Excel. <img src="img/delete_rows.png" style="width:90.0%" /></p></li>
-<li><p>Import into Tableau &amp; Create data pivot After importing data file into Tableau, the data from January 2019 to December 2020 are spread across multiple columns. Then, we can create a flat file to get a target view by selecting the columns from 2019 Jan to 2020 Dec, right click and selecting pivot. <img src="img/import_pivot.png" style="width:90.0%" /></p></li>
-<li><p>Rename column headers Rename ‘Variables’ to ‘Region’. Rename ‘Pivot Field Names’ to ‘Month of Period’. Rename ‘Pivot Field Values’ to ‘rade Values’. <img src="img/rename_headers.png" style="width:90.0%" /></p></li>
-<li><p>Change data type Change ‘Region’ data type to ‘Geographic Role - Country/Region’. Change ‘Month of Period’ data type to ‘Date’. Change ‘Trade Values’ data type to ‘Number(Whole)’. <img src="img/change_region.png" style="width:90.0%" /></p></li>
+<li>Remove unnecessary columns</li>
 </ol>
-<p><strong>Merchandise Exports By Region/Market, Monthly</strong></p>
+<p>Delete useless columns, only keep column Variables and columns from 2019 Jan to 2020 Dec using Excel. <img src="img/delete_columns.png" style="width:90.0%" /></p>
+<ol start="2" type="1">
+<li>Remove useless rows</li>
+</ol>
+<p>Remove unnecessary rows using Excel. <img src="img/delete_rows.png" style="width:90.0%" /></p>
+<ol start="3" type="1">
+<li>Import into Tableau &amp; Create data pivot</li>
+</ol>
+<p>After importing data file into Tableau, the data from January 2019 to December 2020 are spread across multiple columns. Then, we can create a flat file to get a target view by selecting the columns from 2019 Jan to 2020 Dec, right click and selecting pivot. <img src="img/import_pivot.png" style="width:90.0%" /></p>
+<ol start="4" type="1">
+<li>Rename column headers</li>
+</ol>
+<p>Rename ‘Variables’ to ‘Region_Import’. Rename ‘Pivot Field Names’ to ‘Period_Import’. Rename ‘Pivot Field Values’ to ‘Trade Values_Import’. <img src="img/rename_headers.png" style="width:90.0%" /></p>
+<ol start="5" type="1">
+<li>Change data type</li>
+</ol>
+<p>Change ‘Region_Import’ data type to ‘Geographic Role - Country/Region’. Change ‘Period_Import’ data type to ‘Date’. Change ‘Trade Values_Import’ data type to ‘Number(Whole)’. <img src="img/change_region.png" style="width:90.0%" /></p>
+<p><strong>Data: Merchandise Exports By Region/Market, Monthly</strong></p>
 <ol type="1">
 <li>Tidy data and format data</li>
 </ol>
-<p>Repeat steps 1 to 5 as done for data ‘Merchandise Exports By Region/Market, Monthly’ above.</p>
-<h3 id="data-visualisation">4.1 <strong>Data visualisation</strong></h3>
+<p>Repeat steps 1 to 3 as done for data ‘Merchandise Exports By Region/Market, Monthly’ above.</p>
+<ol start="2" type="1">
+<li>Rename column headers</li>
+</ol>
+<p>Rename ‘Variables’ to ‘Region_Export’. Rename ‘Pivot Field Names’ to ‘Period_Export’. Rename ‘Pivot Field Values’ to ‘Trade Values_Export’.</p>
+<ol start="3" type="1">
+<li>Change data type</li>
+</ol>
+<p>Change ‘Region_Export’ data type to ‘Geographic Role - Country/Region’. Change ‘Period_Export’ data type to ‘Date’. Change ‘Trade Values_Export’ data type to ‘Number(Whole)’.</p>
+<h3 id="data-visualisation">4.2 <strong>Data visualisation</strong></h3>
+<p><strong>Visualisation for Merchandise import trade</strong></p>
+<ol type="1">
+<li>Create line chart</li>
+</ol>
+<p>Drag [Period_import] and [Trade_Values_Import] to Columns and Rows respectively. Click [Period_import] and select ‘Quarter Year’ type. <img src="img/drag_import.png" style="width:90.0%" /></p>
+<ol start="2" type="1">
+<li>Apply filter</li>
+</ol>
+<p>Drag [Region_Import] to Filters panel, and check these 6 values: Mainland China, Hong Kong, Taiwan, Malaysia, Japan and United States. <img src="img/filter_import.png" style="width:90.0%" /></p>
+<ol start="3" type="1">
+<li>Apply colour</li>
+</ol>
+<p>Drag [Region_Import] to colour,then click colour and select line with dot marker. The graph will be colored automatically.</p>
+<p><img src="img/color_import.png" style="width:35.0%" /></p>
+<ol start="4" type="1">
+<li>Rename axis</li>
+</ol>
+<p>Rename y-axis to “Merchandise Trade Value”. Rename x-axis to “Quarter of Period”.</p>
+<ol start="5" type="1">
+<li>Add title</li>
+</ol>
+<p>Add title “Merchandise Import Trade in Six Markets, 2019-2020” using boldface.</p>
+<ol start="6" type="1">
+<li>Add Caption</li>
+</ol>
+<p>Right click the graph and select “caption” to edit caption. Then the graph should shown as below.</p>
+<p><img src="img/Import_Trade_line.png" style="width:90.0%" /></p>
+<p><strong>Visualisation for Merchandise export trade</strong></p>
+<p>Repeat steps 1 to 6 as done for data ‘Visualisation for Merchandise import trade’ above except using data from export table instead of data from import table. <img src="img/Export_Trade_line.png" style="width:90.0%" /></p>
+<p><strong>Visualisation for Total Merchandise trade</strong></p>
+<ol type="1">
+<li>Create calculated field</li>
+</ol>
+<p>Click ‘Create calculated field’ and input formula “[Trade_Values_Import]+[Trade_Values_Export]” to create a new field named [Total Trade Value].</p>
+<p><img src="img/create_new_field.png" style="width:35.0%" /><img src="img/calculate_field.png" style="width:40.0%" /></p>
+<ol start="2" type="1">
+<li>Create bar chart</li>
+</ol>
+<p>Drag [Total Trade Value],[Period_import] and [Trade_Values_Import] to Columns and Rows respectively. Click [Period_import] and select ‘Year’ type.</p>
+<p><img src="img/bar_chart.png" /></p>
+<ol start="3" type="1">
+<li>Apply filter</li>
+</ol>
+<p>Drag [Region_Import] to Filters panel, and check these 6 values: Mainland China, Hong Kong, Taiwan, Malaysia, Japan and United States. <img src="img/filter_import.png" style="width:90.0%" /></p>
+<ol start="4" type="1">
+<li>Apply colour</li>
+</ol>
+<p>Drag [Period_Import] to colour,then the graph will be colored automatically.</p>
+<ol start="5" type="1">
+<li>Rename axis</li>
+</ol>
+<p>Edit the title x-axis to “Total Merchandise Trade Values” and the subtitle to “Thousand Dollars”.</p>
+<ol start="6" type="1">
+<li>Add title</li>
+</ol>
+<p>Add title “Total Merchandise Trade of Six Markets, 2019-2020” using boldface. Then, the graph should shown as below. <img src="img/total_trade_bar.png" style="width:90.0%" /></p>
+<p>Full visualisation available at <a href="https://public.tableau.com/app/profile/zhang.youzhen/viz/makeover_1_16221982765090/Dashboard1">Tableau Public</a></p>
+<h1 id="final-visualization">5. Final Visualization</h1>
+<h3 id="snapshot-of-dashboard">5.1 Snapshot of dashboard</h3>
+<p><img src="img/final_dashboard.png" style="width:90.0%" /></p>
+<h3 id="major-insights">5.2 Major Insights</h3>
+<ul>
+<li><p>Mainland China is the biggest merchandise trade market for Singapore among the six markets from 2019 to 2020, although the total merchandise trade volumn has a sight decline in 2020.</p></li>
+<li><p>The total merchandise trade volumns in Taiwan and Hong Kong markets keep increasing from 2019 to 2020, while the merchandise trade values for other four markets in 2020 are less than that in 2019.</p></li>
+<li><p>Merchandise trade in quarter four is always higher than that in other three quarters for Both Merchandise import trade and export trade.</p></li>
+<li><p>Both merchandise exports and imports in Japan market show a almost stable trend from 2019 to 2020.</p></li>
+<li><p>Although merchandise import trade in Hong Kong is always lower than other markets, the merchandise export trade shows a increase trend from 2019 to 2020. The merchandise export trade volumn in Hong Kong markets is higher than other four markets except Mainland China market.</p></li>
+</ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
