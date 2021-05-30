@@ -139,14 +139,16 @@ Repeat steps 1 to 6 as done for data 'Visualisation for Merchandise import trade
 
 1. Create calculated field
 
-Click 'Create calculated field' and input formula "[Trade_Values_Import]+[Trade_Values_Export]" to create a new field named [Total Trade Value]. 
+Click 'Create calculated field' and input formula "IF Year([Period_Import])=2019 THEN [Trade_Values_Import]+[Trade_Values_Export] END" to create a new field named [2019]. 
+
+Click 'Create calculated field' and input formula "IF Year([Period_Import])=2020 THEN [Trade_Values_Import]+[Trade_Values_Export] END" to create a new field named [2020]. 
 
 ![](img/create_new_field.png){width=35%}![](img/calculate_field.png){width=40%}
 
 2. Create bar chart
 
-Drag [Total Trade Value],[Period_import] and [Trade_Values_Import] to Columns and Rows respectively.
-Click [Period_import] and select 'Year' type.
+Drag [2019],[2020] and [Region_Import] to Columns and Rows respectively.
+Click X aixs of the 2019 to edit and select 'reversed' type for the axis.
 
 ![](img/bar_chart.png)
 
@@ -158,13 +160,12 @@ Drag [Region_Import] to Filters panel, and check these 6 values: Mainland China,
 
 4. Apply colour
 
-Drag [Period_Import] to colour,then the graph will be colored automatically. 
+Click 'Color' to edit colour n the Marks pane for 2019 ar chart,then the graph will be colored automatically. 
 
-5. Rename axis
+![](img/edit_color.png){width=40%}
 
-Edit the title x-axis to “Total Merchandise Trade Values” and the subtitle to  "Thousand Dollars".
 
-6. Add title
+5. Add title
 
 Add title "Total Merchandise Trade of Six Markets, 2019-2020" using boldface.
 Then, the graph should shown as below.

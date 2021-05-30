@@ -116,7 +116,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["dataviz-makeover-1_files/anchor-4.2.2/anchor.min.js","dataviz-makeover-1_files/bowser-1.9.3/bowser.min.js","dataviz-makeover-1_files/distill-2.2.21/template.v2.js","dataviz-makeover-1_files/header-attrs-2.8/header-attrs.js","dataviz-makeover-1_files/jquery-1.11.3/jquery.min.js","dataviz-makeover-1_files/popper-2.6.0/popper.min.js","dataviz-makeover-1_files/tippy-6.2.7/tippy-bundle.umd.min.js","dataviz-makeover-1_files/tippy-6.2.7/tippy-light-border.css","dataviz-makeover-1_files/tippy-6.2.7/tippy.css","dataviz-makeover-1_files/tippy-6.2.7/tippy.umd.min.js","dataviz-makeover-1_files/webcomponents-2.0.0/webcomponents.js","img/bar_chart.png","img/calculate_field.png","img/change_region.png","img/Clarity.png","img/color_import.png","img/create_new_field.png","img/delete_columns.png","img/delete_other_regions.png","img/delete_rows.png","img/design.jpg","img/drag_import.png","img/edit_values.png","img/Export_Trade_line.png","img/filter_import.png","img/final_dashboard.png","img/import_pivot.png","img/Import_Trade_line.png","img/keep_six_regions.png","img/original_visualisation.png","img/remove_columns_rows.png","img/rename_headers.png","img/total_trade_bar.png"]}
+  {"type":"character","attributes":{},"value":["dataviz-makeover-1_files/anchor-4.2.2/anchor.min.js","dataviz-makeover-1_files/bowser-1.9.3/bowser.min.js","dataviz-makeover-1_files/distill-2.2.21/template.v2.js","dataviz-makeover-1_files/header-attrs-2.8/header-attrs.js","dataviz-makeover-1_files/jquery-1.11.3/jquery.min.js","dataviz-makeover-1_files/popper-2.6.0/popper.min.js","dataviz-makeover-1_files/tippy-6.2.7/tippy-bundle.umd.min.js","dataviz-makeover-1_files/tippy-6.2.7/tippy-light-border.css","dataviz-makeover-1_files/tippy-6.2.7/tippy.css","dataviz-makeover-1_files/tippy-6.2.7/tippy.umd.min.js","dataviz-makeover-1_files/webcomponents-2.0.0/webcomponents.js","img/bar_chart.png","img/calculate_field.png","img/change_region.png","img/Clarity.png","img/color_import.png","img/create_new_field.png","img/delete_columns.png","img/delete_other_regions.png","img/delete_rows.png","img/design.jpg","img/drag_import.png","img/edit_color.png","img/edit_values.png","img/Export_Trade_line.png","img/filter_import.png","img/final_dashboard.png","img/import_pivot.png","img/Import_Trade_line.png","img/keep_six_regions.png","img/original_visualisation.png","img/remove_columns_rows.png","img/rename_headers.png","img/total_trade_bar.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1627,12 +1627,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <ol type="1">
 <li>Create calculated field</li>
 </ol>
-<p>Click ‘Create calculated field’ and input formula “[Trade_Values_Import]+[Trade_Values_Export]” to create a new field named [Total Trade Value].</p>
+<p>Click ‘Create calculated field’ and input formula “IF Year([Period_Import])=2019 THEN [Trade_Values_Import]+[Trade_Values_Export] END” to create a new field named [2019].</p>
+<p>Click ‘Create calculated field’ and input formula “IF Year([Period_Import])=2020 THEN [Trade_Values_Import]+[Trade_Values_Export] END” to create a new field named [2020].</p>
 <p><img src="img/create_new_field.png" style="width:35.0%" /><img src="img/calculate_field.png" style="width:40.0%" /></p>
 <ol start="2" type="1">
 <li>Create bar chart</li>
 </ol>
-<p>Drag [Total Trade Value],[Period_import] and [Trade_Values_Import] to Columns and Rows respectively. Click [Period_import] and select ‘Year’ type.</p>
+<p>Drag [2019],[2020] and [Region_Import] to Columns and Rows respectively. Click X aixs of the 2019 to edit and select ‘reversed’ type for the axis.</p>
 <p><img src="img/bar_chart.png" /></p>
 <ol start="3" type="1">
 <li>Apply filter</li>
@@ -1641,12 +1642,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <ol start="4" type="1">
 <li>Apply colour</li>
 </ol>
-<p>Drag [Period_Import] to colour,then the graph will be colored automatically.</p>
+<p>Click ‘Color’ to edit colour n the Marks pane for 2019 ar chart,then the graph will be colored automatically.</p>
+<p><img src="img/edit_color.png" style="width:40.0%" /></p>
 <ol start="5" type="1">
-<li>Rename axis</li>
-</ol>
-<p>Edit the title x-axis to “Total Merchandise Trade Values” and the subtitle to “Thousand Dollars”.</p>
-<ol start="6" type="1">
 <li>Add title</li>
 </ol>
 <p>Add title “Total Merchandise Trade of Six Markets, 2019-2020” using boldface. Then, the graph should shown as below. <img src="img/total_trade_bar.png" style="width:90.0%" /></p>
