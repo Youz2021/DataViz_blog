@@ -1,7 +1,7 @@
 ---
 title: "DataViz Makeover 1"
 description: |
-  Explore different perspectives in Merchandise Trade from six markets.
+  Explore perspectives of Singapore Merchandise Trade in six markets from 2019 to 2020.
 author:
   - name: Youzhen Zhang
     url: https://example.com/norajones
