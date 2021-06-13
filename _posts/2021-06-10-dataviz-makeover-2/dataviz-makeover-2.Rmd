@@ -1,7 +1,7 @@
 ---
 title: "DataViz Makeover 2"
 description: |
-  Explore perspectives of Singapore Merchandise Trade by different markets from 2011 to 2020.
+  Explore perspectives of Singapore Merchandise Trade in multiple markets from 2011 to 2020.
 author:
   - name: Youzhen Zhang
     url: https://example.com/norajones
@@ -9,6 +9,8 @@ date: 06-10-2021
 output:
   distill::distill_article:
     self_contained: false
+    toc: true
+    toc_depth: 3
 ---
 
 
@@ -29,7 +31,7 @@ The original design as shown below.
 |**S/N** |          **Critiques**         |     **Comments**     |
 |:--|:-----------------------------------------------|:--------------------------|
 | 1  | **Lack of a title to give a brief introduction for the visualisation** - A proper title that describe the intend of the graph well can help users to understand the visualisation easier and better.   | Add a title that can precisely convey the visualisation. |
-| 2  | **The title for the Axis is misleading** - Just use import and export as the title for Y-axis and X-axis respectively is vague, users can not easily identify whether the value of axis is the actual merchandise trade volume or the percentage of merchandise trade volume.  | Use the proper title for both Y-axis and X-axis.   |
+| 2  | **The title and value for the Axis is misleading** - Just use import and export as the title for Y-axis and X-axis respectively is vague, users can not easily identify whether the value of axis is the actual merchandise trade volume or the percentage of merchandise trade volume.  | Use the proper title for both Y-axis and X-axis.   |
 | 3  | **No indication of the Period for the merchandise trade volume** - The data source contains lots of merchandise trade data from 1976 to 2021, users can not be able to identify the period for the merchandise trade shown in the visualisation if no additional information to emphasize the specific period.     | Add information to clarify the period observed.  |
 | 4  | **The conclusion information highlighted in the bottom of the visualisation can not be drawn based on the graph** - The year 2009 and 2006 are mentioned in the conclusion, but there is no related information shown in the graph.    | Clarify the period observed and make proper conclusions based on the visualisation.   |
 
