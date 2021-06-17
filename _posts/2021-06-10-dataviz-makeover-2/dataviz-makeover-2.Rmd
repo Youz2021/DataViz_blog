@@ -53,15 +53,78 @@ The original design as shown below.
 
 # 4. Data Visualisation Steps
 
-### 4.1 **Data preparation**
+### 4.1 Data preparation
 
 1. Remove unnecessary rows
 
-For both Import data and Export data, delete the top five rows to let the row for 'Variables' and 'the monthly period' to be the first rows using Excel.
+For both Import data and Export data, delete the top five rows to let the row for 'Variables' and 'the monthly period' to be the first rows and rename the data sheet 'Import' and 'Export' respectively using Excel.
 ![](img/delete_rows.png){width=90%}
 
-2. Import into Tableau & Create data pivot
 
+2. Import into Tableau 
+
+After importing data file into Tableau, double click Import data file,then the detailed data would be shown on the right side.
+
+![](img/import.png){width=90%}
+
+3. Remove the '(Million Dollars)' for Variables
+
+Click the triangle sign on the left top of the 'Variables' column, then click split, the column would be split into two more columns. one is 'Variables - Split 1' and the other is 'Variables - Split 2'.
+
+![](img/split.png){width=40%}
+
+the columns are as shown below after splitting.
+
+![](img/after_split.png){width=40%}
+
+
+4. Change data type
+
+Change the data type for Variables column by clicking the data type icon on the right top of this column, and select 'Geograhic Role' - 'Country/Region'.
+![](img/change_type.png){width=40%}
+
+5. Change column name
+
+Change the name of 'Variables - Split 1' to 'Markets' by clicking the name of this column.
+![](img/change_name.png){width=40%}
+
+
+6. Hide columns 
+
+Hide all the columns except the 'Markets' and the column from 'Jan 2011' to 'Dec 2020' by selecting the columns and right click, then clicking hide to hide columns.
+
+![](img/hide.png){width=40%}
+
+
+7. Create data pivot
+
+Select columns from 'Jan 2011' to 'Dec 2020' at one time and right click, then click pivot.
+
+![](img/pivot.png){width=40%} 
+
+the pivot is as shown.
+
+![](img/after_ivot.png){width=40%}
+
+
+8. Change column name for pivot table
+
+Change 'Pivot Field Names' and 'Pivot Field Values' column to 'Period' and 'Values' respectively by double click the column name.
+
+![](img/change_pivot.png){width=40%}
+
+
+9. Change data type for pivot table
+
+Change the data type for the 'Period' column to 'date' by clicking the data type icon on th right top of the column and select 'date'.
+
+![](img/date_pivot.png){width=40%}
+
+
+10. Repeat steps 3 to 9 to prepare export data as done for import data.
+
+
+### 4.2 Data visualisation
 
 
 

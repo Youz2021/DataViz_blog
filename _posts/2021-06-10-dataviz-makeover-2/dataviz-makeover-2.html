@@ -116,7 +116,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["dataviz-makeover-2_files/anchor-4.2.2/anchor.min.js","dataviz-makeover-2_files/bowser-1.9.3/bowser.min.js","dataviz-makeover-2_files/distill-2.2.21/template.v2.js","dataviz-makeover-2_files/header-attrs-2.8/header-attrs.js","dataviz-makeover-2_files/jquery-1.11.3/jquery.min.js","dataviz-makeover-2_files/popper-2.6.0/popper.min.js","dataviz-makeover-2_files/tippy-6.2.7/tippy-bundle.umd.min.js","dataviz-makeover-2_files/tippy-6.2.7/tippy-light-border.css","dataviz-makeover-2_files/tippy-6.2.7/tippy.css","dataviz-makeover-2_files/tippy-6.2.7/tippy.umd.min.js","dataviz-makeover-2_files/webcomponents-2.0.0/webcomponents.js","img/delete_rows.png","img/original_design.png"]}
+  {"type":"character","attributes":{},"value":["dataviz-makeover-2_files/anchor-4.2.2/anchor.min.js","dataviz-makeover-2_files/bowser-1.9.3/bowser.min.js","dataviz-makeover-2_files/distill-2.2.21/template.v2.js","dataviz-makeover-2_files/header-attrs-2.8/header-attrs.js","dataviz-makeover-2_files/jquery-1.11.3/jquery.min.js","dataviz-makeover-2_files/popper-2.6.0/popper.min.js","dataviz-makeover-2_files/tippy-6.2.7/tippy-bundle.umd.min.js","dataviz-makeover-2_files/tippy-6.2.7/tippy-light-border.css","dataviz-makeover-2_files/tippy-6.2.7/tippy.css","dataviz-makeover-2_files/tippy-6.2.7/tippy.umd.min.js","dataviz-makeover-2_files/webcomponents-2.0.0/webcomponents.js","img/after_ivot.png","img/after_split.png","img/change_name.png","img/change_pivot.png","img/change_type.png","img/date_pivot.png","img/delete_rows.png","img/hide.png","img/import.png","img/original_design.png","img/pivot.png","img/split.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1488,6 +1488,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><a href="#clarity">2.1 Clarity</a></li>
 <li><a href="#aesthetics">2.2 Aesthetics</a></li>
 </ul></li>
+<li><a href="#proposed-design">3. Proposed Design</a></li>
+<li><a href="#data-visualisation-steps">4. Data Visualisation Steps</a>
+<ul>
+<li><a href="#data-preparation">4.1 Data preparation</a></li>
+<li><a href="#data-visualisation">4.2 Data visualisation</a></li>
+</ul></li>
 </ul>
 </nav>
 </div>
@@ -1523,7 +1529,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <tr class="odd">
 <td style="text-align: left;">3</td>
 <td style="text-align: left;">No indication for the Period of the merchandise trade volume - The data source contains lots of merchandise trade data from 1976 to 2021, users can not be able to identify the period for the merchandise trade shown in the visualisation if no additional information to emphasize the specific period.</td>
-<td style="text-align: left;">Add information to clarify the period observed.</td>
+<td style="text-align: left;">Add information to clarify the period observed in the title or in the chart.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">4</td>
@@ -1574,6 +1580,59 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </tr>
 </tbody>
 </table>
+<h1 id="proposed-design">3. Proposed Design</h1>
+<h1 id="data-visualisation-steps">4. Data Visualisation Steps</h1>
+<h3 id="data-preparation">4.1 Data preparation</h3>
+<ol type="1">
+<li>Remove unnecessary rows</li>
+</ol>
+<p>For both Import data and Export data, delete the top five rows to let the row for ‘Variables’ and ‘the monthly period’ to be the first rows and rename the data sheet ‘Import’ and ‘Export’ respectively using Excel. <img src="img/delete_rows.png" style="width:90.0%" /></p>
+<ol start="2" type="1">
+<li>Import into Tableau</li>
+</ol>
+<p>After importing data file into Tableau, double click Import data file,then the detailed data would be shown on the right side.</p>
+<p><img src="img/import.png" style="width:90.0%" /></p>
+<ol start="3" type="1">
+<li>Remove the ‘(Million Dollars)’ for Variables</li>
+</ol>
+<p>Click the triangle sign on the left top of the ‘Variables’ column, then click split, the column would be split into two more columns. one is ‘Variables - Split 1’ and the other is ‘Variables - Split 2’.</p>
+<p><img src="img/split.png" style="width:40.0%" /></p>
+<p>the columns are as shown below after splitting.</p>
+<p><img src="img/after_split.png" style="width:40.0%" /></p>
+<ol start="4" type="1">
+<li>Change data type</li>
+</ol>
+<p>Change the data type for Variables column by clicking the data type icon on the right top of this column, and select ‘Geograhic Role’ - ‘Country/Region’. <img src="img/change_type.png" style="width:40.0%" /></p>
+<ol start="5" type="1">
+<li>Change column name</li>
+</ol>
+<p>Change the name of ‘Variables - Split 1’ to ‘Markets’ by clicking the name of this column. <img src="img/change_name.png" style="width:40.0%" /></p>
+<ol start="6" type="1">
+<li>Hide columns</li>
+</ol>
+<p>Hide all the columns except the ‘Markets’ and the column from ‘Jan 2011’ to ‘Dec 2020’ by selecting the columns and right click, then clicking hide to hide columns.</p>
+<p><img src="img/hide.png" style="width:40.0%" /></p>
+<ol start="7" type="1">
+<li>Create data pivot</li>
+</ol>
+<p>Select columns from ‘Jan 2011’ to ‘Dec 2020’ at one time and right click, then click pivot.</p>
+<p><img src="img/pivot.png" style="width:40.0%" /></p>
+<p>the pivot is as shown.</p>
+<p><img src="img/after_ivot.png" style="width:40.0%" /></p>
+<ol start="8" type="1">
+<li>Change column name for pivot table</li>
+</ol>
+<p>Change ‘Pivot Field Names’ and ‘Pivot Field Values’ column to ‘Period’ and ‘Values’ respectively by double click the column name.</p>
+<p><img src="img/change_pivot.png" style="width:40.0%" /></p>
+<ol start="9" type="1">
+<li>Change data type for pivot table</li>
+</ol>
+<p>Change the data type for the ‘Period’ column to ‘date’ by clicking the data type icon on th right top of the column and select ‘date’.</p>
+<p><img src="img/date_pivot.png" style="width:40.0%" /></p>
+<ol start="10" type="1">
+<li>Repeat steps 3 to 9 to prepare export data as done for import data.</li>
+</ol>
+<h3 id="data-visualisation">4.2 Data visualisation</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
