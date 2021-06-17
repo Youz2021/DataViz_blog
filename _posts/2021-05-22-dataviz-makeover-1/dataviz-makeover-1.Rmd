@@ -26,7 +26,7 @@ The original visualisation below is created by using [Merchandise Trade by Regio
 
 # 2. Critiques and Recommendations
 
-### 2.1 **Clarity**
+### 2.1 Clarity
 |**S/N** |          **Critiques**         |     **Comments**     |
 |:--|:-----------------------------------------------|:--------------------------|
 | 1  |Chart title is not precise – The title “Merchandise Trade of Top Six Trading Countries,2019-2020” does not convey the intent of the graph well. The chart refers to the merchandise trade of top six regions from 2019 to 2020, making it difficult to identify the ranking of the six markets quickly.      | Change title to “Merchandise Trade of Six Trading Regions from 2019 to 2020”. |
@@ -35,7 +35,7 @@ The original visualisation below is created by using [Merchandise Trade by Regio
 |4  |Lack of captions in the graph – Captions can provide brief explanations accompanying to the graph.     | Add captions at the bottom of the graph. |
 
 
-### 2.2 **Aesthetics**
+### 2.2 Aesthetics
 |**S/N** |          **Critiques**         |     **Comments**     |
 |:--|:-----------------------------------------------|:--------------------------|
 | 1  |The font size and location of each region label –  Font size of the label should be smaller than the title of the graph's. The location of the label should be at the center to indicate the related area graph clearly.      | Change the font size of the region label smaller than the font size of title and move the label to the center of each area graph. |
