@@ -5,7 +5,7 @@ description: |
 author:
   - name: Youzhen Zhang
     url: https://example.com/norajones
-date: 06-10-2021
+date: 06-15-2021
 output:
   distill::distill_article:
     self_contained: false
@@ -61,13 +61,13 @@ For both Import data and Export data, delete the top five rows to let the row fo
 ![](img/delete_rows.png){width=90%}
 
 
-2. Import into Tableau 
+2. Import data into Tableau 
 
-After importing data file into Tableau, double click Import data file,then the detailed data would be shown on the right side.
+After importing data file into Tableau, double click 'New Union' on the left side of the page,then drag import file and export file into the 'Union' Popup, click Apply and Ok.
 
-![](img/import.png){width=90%}
+![](img/union.png){width=60%}
 
-3. Remove the '(Million Dollars)' for Variables
+3. Split column
 
 Click the triangle sign on the left top of the 'Variables' column, then click split, the column would be split into two more columns. one is 'Variables - Split 1' and the other is 'Variables - Split 2'.
 
@@ -85,13 +85,14 @@ Change the data type for Variables column by clicking the data type icon on the 
 
 5. Change column name
 
-Change the name of 'Variables - Split 1' to 'Markets - Import' by clicking the name of this column.
+Change the name of 'Variables - Split 1' to 'Markets' by clicking the name of this column.
+
 ![](img/change_name.png){width=40%}
 
 
 6. Hide columns 
 
-Hide all the columns except the 'Markets' and the column from 'Jan 2011' to 'Dec 2020' by selecting the columns and right click, then clicking hide to hide columns.
+Hide all the columns except the 'Markets' ,'Sheet' and the column from 'Jan 2011' to 'Dec 2020' by selecting the columns and right click, then clicking hide to hide columns.
 
 ![](img/hide.png){width=40%}
 
@@ -102,45 +103,43 @@ Select columns from 'Jan 2011' to 'Dec 2020' at one time and right click, then c
 
 ![](img/pivot.png){width=40%} 
 
-the pivot is as shown.
+The pivot is as shown.
 
 ![](img/after_ivot.png){width=40%}
 
 
 8. Change column name for pivot table
 
-Change 'Pivot Field Names' and 'Pivot Field Values' column to 'Period - Import' and 'Values - Import' respectively by double click the column name.
+Change 'Pivot Names' and 'Pivot Values' column to 'Period' and 'Values' respectively by double click the column name.
 
 ![](img/change_pivot.png){width=40%}
 
 
 9. Change data type for pivot table
 
-Change the data type for the 'Period - Import' column to 'date' by clicking the data type icon on th right top of the column and select 'date'.
+Change the data type for the 'Period' column to 'date' by clicking the data type icon on th right top of the column and select 'date'.
 
-Chang the data type for the 'Values - Import' column to 'Numbers'  by clicking the data type icon on th right top of the column and select 'Numbers(decimal)'.
+Chang the data type for the 'Values' column to 'Numbers'  by clicking the data type icon on th right top of the column and select 'Numbers(decimal)'.
 
 ![](img/date_pivot.png){width=40%}
 
 
-10. Repeat steps 3 to 9 to prepare export data as done for import data.
-
-11. Build Relationship Between Tables
-
-Build relationship between import data and export data by double click the link and add the column name we wanted to be related.
-
-![](img/relation.png){width=40%}
-
-
 ### 4.2 Data visualisation
 
-**Visualisation for Bubble Chart**
+**1. Visualisation for Bubble Chart**
 
-1.1. Drag data into canvas
+1.1. Create Calculated Fields
 
-Drag [Values-Export] and [Values-Import] to Columns and Rows respectively. Then change the measure of [Values-Export] and [Values-Import] to 'SUM'.
+Click 'Analysis' and select 'Create Calculated Field', then input 'Export' as the name of this field and input the formula in the box below. Repeat the same step to create the field called Import using 'Import' to replace 'Export' in the formula.
 
-![](img/drag_export.png){width=50%}
+![](img/create-field.png){width=25%}
+![](img/export-formula.png){width=50%}
+
+1.2 Drag data into canvas
+
+Drag [Export] and [Import] to Columns and Rows respectively. 
+
+![](img/drag_export.png){width=40%}
 
 
 1.2 Change Axis value to Percentage
@@ -151,9 +150,29 @@ Change Y-axis and X-axis to percentage by clicking Analysis and selecting Percen
 
 1.3 Apply Detail 
 
-Drag [Markets-Export] to Detail,then the chart would show the detail for each Market.
+Drag [Markets] to Detail,then the chart would show the detail for each Market.
 
 ![](img/detail.png){width=60%}
+
+1.4 Change table calculation to percentile
+
+Click the triangle sign of 'SUM(Import)' and 'SUM(Export)' and select 'Quick Table Calculation' and 'Percentile'. 
+
+![](img/percentile.png){width=40%}
+
+1.5 Change Compute Using
+
+Click the triangle sign of 'SUM(Import)' and 'SUM(Export)' and select 'Compute Using' and 'Markets'.
+
+![](img/compute.png){width=40%}
+
+1.6 Apply color
+
+Drag [Export] to color,then click color and edit color. Select 'Green-Blue Diverging' for palette and the graph will be colored automatically.
+
+![](img/color-sum.png){width=40%}
+
+1.6  
 
 
 
