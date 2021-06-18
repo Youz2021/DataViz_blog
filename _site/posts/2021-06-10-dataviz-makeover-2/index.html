@@ -117,7 +117,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["dataviz-makeover-2_files/anchor-4.2.2/anchor.min.js","dataviz-makeover-2_files/bowser-1.9.3/bowser.min.js","dataviz-makeover-2_files/distill-2.2.21/template.v2.js","dataviz-makeover-2_files/header-attrs-2.8/header-attrs.js","dataviz-makeover-2_files/jquery-1.11.3/jquery.min.js","dataviz-makeover-2_files/popper-2.6.0/popper.min.js","dataviz-makeover-2_files/tippy-6.2.7/tippy-bundle.umd.min.js","dataviz-makeover-2_files/tippy-6.2.7/tippy-light-border.css","dataviz-makeover-2_files/tippy-6.2.7/tippy.css","dataviz-makeover-2_files/tippy-6.2.7/tippy.umd.min.js","dataviz-makeover-2_files/webcomponents-2.0.0/webcomponents.js","img/after_ivot.png","img/after_split.png","img/change_name.png","img/change_pivot.png","img/change_type.png","img/date_pivot.png","img/delete_rows.png","img/hide.png","img/import.png","img/original_design.png","img/pivot.png","img/split.png"]}
+  {"type":"character","attributes":{},"value":["dataviz-makeover-2_files/anchor-4.2.2/anchor.min.js","dataviz-makeover-2_files/bowser-1.9.3/bowser.min.js","dataviz-makeover-2_files/distill-2.2.21/template.v2.js","dataviz-makeover-2_files/header-attrs-2.8/header-attrs.js","dataviz-makeover-2_files/jquery-1.11.3/jquery.min.js","dataviz-makeover-2_files/popper-2.6.0/popper.min.js","dataviz-makeover-2_files/tippy-6.2.7/tippy-bundle.umd.min.js","dataviz-makeover-2_files/tippy-6.2.7/tippy-light-border.css","dataviz-makeover-2_files/tippy-6.2.7/tippy.css","dataviz-makeover-2_files/tippy-6.2.7/tippy.umd.min.js","dataviz-makeover-2_files/webcomponents-2.0.0/webcomponents.js","img/after_ivot.png","img/after_split.png","img/change_name.png","img/change_pivot.png","img/change_type.png","img/date_pivot.png","img/delete_rows.png","img/detail.png","img/drag_export.png","img/hide.png","img/import.png","img/original_design.png","img/percentage.png","img/pivot.png","img/relation.png","img/split.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2206,7 +2206,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <ol type="1">
 <li>Remove unnecessary rows</li>
 </ol>
-<p>For both Import data and Export data, delete the top five rows to let the row for ‘Variables’ and ‘the monthly period’ to be the first rows and rename the data sheet ‘Import’ and ‘Export’ respectively using Excel. <img src="img/delete_rows.png" style="width:90.0%" /></p>
+<p>For both Import data and Export data, delete the top five rows to let the row for ‘Variables’ and ‘the monthly period’ to be the first row, then delete the row for ‘Total Merchandise Trade’ and rename the data sheet ‘Import’ and ‘Export’ respectively using Excel. <img src="img/delete_rows.png" style="width:90.0%" /></p>
 <ol start="2" type="1">
 <li>Import into Tableau</li>
 </ol>
@@ -2226,7 +2226,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <ol start="5" type="1">
 <li>Change column name</li>
 </ol>
-<p>Change the name of ‘Variables - Split 1’ to ‘Markets’ by clicking the name of this column. <img src="img/change_name.png" style="width:40.0%" /></p>
+<p>Change the name of ‘Variables - Split 1’ to ‘Markets - Import’ by clicking the name of this column. <img src="img/change_name.png" style="width:40.0%" /></p>
 <ol start="6" type="1">
 <li>Hide columns</li>
 </ol>
@@ -2242,17 +2242,31 @@ document.addEventListener('DOMContentLoaded', function() {
 <ol start="8" type="1">
 <li>Change column name for pivot table</li>
 </ol>
-<p>Change ‘Pivot Field Names’ and ‘Pivot Field Values’ column to ‘Period’ and ‘Values’ respectively by double click the column name.</p>
+<p>Change ‘Pivot Field Names’ and ‘Pivot Field Values’ column to ‘Period - Import’ and ‘Values - Import’ respectively by double click the column name.</p>
 <p><img src="img/change_pivot.png" style="width:40.0%" /></p>
 <ol start="9" type="1">
 <li>Change data type for pivot table</li>
 </ol>
-<p>Change the data type for the ‘Period’ column to ‘date’ by clicking the data type icon on th right top of the column and select ‘date’.</p>
+<p>Change the data type for the ‘Period - Import’ column to ‘date’ by clicking the data type icon on th right top of the column and select ‘date’.</p>
+<p>Chang the data type for the ‘Values - Import’ column to ‘Numbers’ by clicking the data type icon on th right top of the column and select ‘Numbers(decimal)’.</p>
 <p><img src="img/date_pivot.png" style="width:40.0%" /></p>
 <ol start="10" type="1">
-<li>Repeat steps 3 to 9 to prepare export data as done for import data.</li>
+<li><p>Repeat steps 3 to 9 to prepare export data as done for import data.</p></li>
+<li><p>Build Relationship Between Tables</p></li>
 </ol>
+<p>Build relationship between import data and export data by double click the link and add the column name we wanted to be related.</p>
+<p><img src="img/relation.png" style="width:40.0%" /></p>
 <h3 id="data-visualisation">4.2 Data visualisation</h3>
+<p><strong>Visualisation for Bubble Chart</strong></p>
+<p>1.1. Drag data into canvas</p>
+<p>Drag [Values-Export] and [Values-Import] to Columns and Rows respectively. Then change the measure of [Values-Export] and [Values-Import] to ‘SUM’.</p>
+<p><img src="img/drag_export.png" style="width:50.0%" /></p>
+<p>1.2 Change Axis value to Percentage</p>
+<p>Change Y-axis and X-axis to percentage by clicking Analysis and selecting Percentage of - Table.</p>
+<p><img src="img/percentage.png" style="width:50.0%" /></p>
+<p>1.3 Apply Detail</p>
+<p>Drag [Markets-Export] to Detail,then the chart would show the detail for each Market.</p>
+<p><img src="img/detail.png" style="width:60.0%" /></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

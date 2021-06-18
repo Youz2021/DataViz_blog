@@ -57,7 +57,7 @@ The original design as shown below.
 
 1. Remove unnecessary rows
 
-For both Import data and Export data, delete the top five rows to let the row for 'Variables' and 'the monthly period' to be the first rows and rename the data sheet 'Import' and 'Export' respectively using Excel.
+For both Import data and Export data, delete the top five rows to let the row for 'Variables' and 'the monthly period' to be the first row, then delete the row for 'Total Merchandise Trade' and rename the data sheet 'Import' and 'Export' respectively using Excel.
 ![](img/delete_rows.png){width=90%}
 
 
@@ -85,7 +85,7 @@ Change the data type for Variables column by clicking the data type icon on the 
 
 5. Change column name
 
-Change the name of 'Variables - Split 1' to 'Markets' by clicking the name of this column.
+Change the name of 'Variables - Split 1' to 'Markets - Import' by clicking the name of this column.
 ![](img/change_name.png){width=40%}
 
 
@@ -109,22 +109,53 @@ the pivot is as shown.
 
 8. Change column name for pivot table
 
-Change 'Pivot Field Names' and 'Pivot Field Values' column to 'Period' and 'Values' respectively by double click the column name.
+Change 'Pivot Field Names' and 'Pivot Field Values' column to 'Period - Import' and 'Values - Import' respectively by double click the column name.
 
 ![](img/change_pivot.png){width=40%}
 
 
 9. Change data type for pivot table
 
-Change the data type for the 'Period' column to 'date' by clicking the data type icon on th right top of the column and select 'date'.
+Change the data type for the 'Period - Import' column to 'date' by clicking the data type icon on th right top of the column and select 'date'.
+
+Chang the data type for the 'Values - Import' column to 'Numbers'  by clicking the data type icon on th right top of the column and select 'Numbers(decimal)'.
 
 ![](img/date_pivot.png){width=40%}
 
 
 10. Repeat steps 3 to 9 to prepare export data as done for import data.
 
+11. Build Relationship Between Tables
+
+Build relationship between import data and export data by double click the link and add the column name we wanted to be related.
+
+![](img/relation.png){width=40%}
+
 
 ### 4.2 Data visualisation
+
+**Visualisation for Bubble Chart**
+
+1.1. Drag data into canvas
+
+Drag [Values-Export] and [Values-Import] to Columns and Rows respectively. Then change the measure of [Values-Export] and [Values-Import] to 'SUM'.
+
+![](img/drag_export.png){width=50%}
+
+
+1.2 Change Axis value to Percentage
+
+Change Y-axis and X-axis to percentage by clicking Analysis and selecting Percentage of - Table.
+
+![](img/percentage.png){width=50%}
+
+1.3 Apply Detail 
+
+Drag [Markets-Export] to Detail,then the chart would show the detail for each Market.
+
+![](img/detail.png){width=60%}
+
+
 
 
 
