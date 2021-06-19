@@ -116,7 +116,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["dataviz-makeover-2_files/anchor-4.2.2/anchor.min.js","dataviz-makeover-2_files/bowser-1.9.3/bowser.min.js","dataviz-makeover-2_files/distill-2.2.21/template.v2.js","dataviz-makeover-2_files/header-attrs-2.8/header-attrs.js","dataviz-makeover-2_files/jquery-1.11.3/jquery.min.js","dataviz-makeover-2_files/popper-2.6.0/popper.min.js","dataviz-makeover-2_files/tippy-6.2.7/tippy-bundle.umd.min.js","dataviz-makeover-2_files/tippy-6.2.7/tippy-light-border.css","dataviz-makeover-2_files/tippy-6.2.7/tippy.css","dataviz-makeover-2_files/tippy-6.2.7/tippy.umd.min.js","dataviz-makeover-2_files/webcomponents-2.0.0/webcomponents.js","img/after_ivot.png","img/after_split.png","img/change_name.png","img/change_pivot.png","img/change_type.png","img/color-sum.png","img/compute.png","img/create-field.png","img/date_pivot.png","img/delete_rows.png","img/detail.png","img/drag_export.png","img/edit-color.png","img/export-formula.png","img/hide.png","img/import.png","img/original_design.png","img/percentage.png","img/percentile.png","img/pivot.png","img/relation.png","img/split.png","img/union.png"]}
+  {"type":"character","attributes":{},"value":["dataviz-makeover-2_files/anchor-4.2.2/anchor.min.js","dataviz-makeover-2_files/bowser-1.9.3/bowser.min.js","dataviz-makeover-2_files/distill-2.2.21/template.v2.js","dataviz-makeover-2_files/header-attrs-2.8/header-attrs.js","dataviz-makeover-2_files/jquery-1.11.3/jquery.min.js","dataviz-makeover-2_files/popper-2.6.0/popper.min.js","dataviz-makeover-2_files/tippy-6.2.7/tippy-bundle.umd.min.js","dataviz-makeover-2_files/tippy-6.2.7/tippy-light-border.css","dataviz-makeover-2_files/tippy-6.2.7/tippy.css","dataviz-makeover-2_files/tippy-6.2.7/tippy.umd.min.js","dataviz-makeover-2_files/webcomponents-2.0.0/webcomponents.js","img/after_ivot.png","img/after_split.png","img/apply-color.png","img/Bubble.png","img/change_name.png","img/change_pivot.png","img/change_type.png","img/color-sum.png","img/compute.png","img/create-field.png","img/date_pivot.png","img/delete_rows.png","img/detail.png","img/drag_export.png","img/Dual_Axis.png","img/edit-color.png","img/edit-filter-title.png","img/edit-filter-year.png","img/export-formula.png","img/export_vs_import.png","img/format-import-1.png","img/format-import.png","img/hide.png","img/import.png","img/line-color.png","img/line-format.png","img/line-measure.png","img/line-show.png","img/line-size.png","img/original_design.png","img/percentage.png","img/percentile.png","img/pivot.png","img/rangking.png","img/relation.png","img/show-filter-title.png","img/size.png","img/split.png","img/syn_axis.png","img/toolkit.png","img/top-ten.png","img/Total.png","img/union.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1494,6 +1494,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><a href="#data-preparation">4.1 Data preparation</a></li>
 <li><a href="#data-visualisation">4.2 Data visualisation</a></li>
 </ul></li>
+<li><a href="#final-visualization">5. Final Visualization</a>
+<ul>
+<li><a href="#snapshot-of-dashboard">5.1 Snapshot of dashboard</a></li>
+</ul></li>
 </ul>
 </nav>
 </div>
@@ -1634,28 +1638,50 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h3 id="data-visualisation">4.2 Data visualisation</h3>
 <p><strong>1. Visualisation for Bubble Chart</strong></p>
 <p>1.1. Create Calculated Fields</p>
-<p>Click ‘Analysis’ and select ‘Create Calculated Field’, then input ‘Export’ as the name of this field and input the formula in the box below. Repeat the same step to create the field called Import using ‘Import’ to replace ‘Export’ in the formula.</p>
-<p><img src="img/create-field.png" style="width:25.0%" /> <img src="img/export-formula.png" style="width:50.0%" /></p>
+<p>Click ‘Analysis’ and select ‘Create Calculated Field’, then input ‘Export’ as the name of this field and input the formula in the box below. Repeat the same step to create the field [Import] using ‘Import’ to replace ‘Export’ in the formula. and to create the field [Total],[Ranking_Total] and [Export_vs_Import] using the formula as shown below.</p>
+<p><img src="img/create-field.png" style="width:25.0%" /></p>
+<p><img src="img/export-formula.png" style="width:35.0%" /> <img src="img/Total.png" style="width:35.0%" /> <img src="img/export_vs_import.png" style="width:35.0%" /></p>
+<p><img src="img/rangking.png" style="width:35.0%" /></p>
 <p>1.2 Drag data into canvas</p>
 <p>Drag [Export] and [Import] to Columns and Rows respectively.</p>
 <p><img src="img/drag_export.png" style="width:40.0%" /></p>
-<p>1.2 Change Axis value to Percentage</p>
-<p>Change Y-axis and X-axis to percentage by clicking Analysis and selecting Percentage of - Table.</p>
-<p><img src="img/percentage.png" style="width:50.0%" /></p>
 <p>1.3 Apply Detail</p>
-<p>Drag [Markets] to Detail,then the chart would show the detail for each Market.</p>
-<p><img src="img/detail.png" style="width:60.0%" /></p>
-<p>1.4 Change table calculation to percentile</p>
-<p>Click the triangle sign of ‘SUM(Import)’ and ‘SUM(Export)’ and select ‘Quick Table Calculation’ and ‘Percentile’.</p>
-<p><img src="img/percentile.png" style="width:40.0%" /></p>
-<p>1.5 Change Compute Using</p>
-<p>Click the triangle sign of ‘SUM(Import)’ and ‘SUM(Export)’ and select ‘Compute Using’ and ‘Markets’.</p>
-<p><img src="img/compute.png" style="width:40.0%" /></p>
-<p>1.6 Apply color</p>
-<p>Drag [Export] to color,then change the measure type to sum by right click the [Values-Export] in Marks box.</p>
+<p>Drag [Markets] to detail to show detailed markets.</p>
+<p><img src="img/detail.png" style="width:40.0%" /></p>
+<p>1.4 Add Reference Line</p>
+<p>1.4.1 Drag [Import] to columns and right click [Import] to select dual-axis.</p>
+<p><img src="img/Dual_Axis.png" style="width:40.0%" /></p>
+<p>1.4.2 Right click the top X-axis and select ‘Synchronize Axis’ and uncheck ‘Show Header’.</p>
+<p><img src="img/syn_axis.png" style="width:40.0%" /></p>
+<p>1.4.3 Select ‘SUM(Import)’ pane and minimize the size.</p>
+<p><img src="img/line-size.png" style="width:30.0%" /></p>
+<p>1.4.4 Select ‘SUM(Import)’ pane and adjust the opacity to zero.</p>
+<p><img src="img/line-color.png" style="width:30.0%" /></p>
+<p>1.4.5 Remove ‘Measure values’ from the Mark pane.</p>
+<p><img src="img/line-measure.png" style="width:30.0%" /></p>
+<p>1.4.6 Right click the chart and select ‘Trend Lines’-‘Show Trend Lines’-‘SUM(Import)’.</p>
+<p><img src="img/line-show.png" style="width:30.0%" /></p>
+<p>1.4.7 Change the format of the trend line to dot line by right click the trend line and select format, then change the ‘Trend lines’ to dot line.</p>
+<p><img src="img/line-format.png" style="width:30.0%" /></p>
+<p>1.5 Apply color</p>
+<p>Drag [Export_vs_Import] to color,then click color and edit color. Select ‘orange’ for ‘Net Importer’ and select ‘blue’ for ‘Net Exporter’. Then change the marker type to circle.</p>
 <p><img src="img/color-sum.png" style="width:40.0%" /></p>
-<p>1.5 Edit color</p>
-<p>click color pane and select line with dot marker. The graph will be colored automatically.</p>
+<p>1.6 Differentiate size</p>
+<p>Drag [Total] to size to adjust the size by dragging the size cursor.</p>
+<p><img src="img/size.png" style="width:30.0%" /></p>
+<p>1.7 Apply Filter</p>
+<p>Drag [Markets] to Filter pane and select by top 10 total values and drag [Period] to Filter and select year from 2011 to 2020.</p>
+<p><img src="img/top-ten.png" style="width:40.0%" /></p>
+<p>1.8 Add Tooltip</p>
+<p>Drag [Ranking_Total] to Tooltip and change the computing use to ‘Markets’ by rignt click AGG(Ranking_Total).</p>
+<p><img src="img/rangking.png" style="width:30.0%" /></p>
+<p>1.9 Rename axis</p>
+<p>Rename y-axis to “Import Trade Value”. Rename x-axis to “Export Trade Value”.</p>
+<p>1.10 Add title</p>
+<p>Add title “Merchandise Import Trade in Six Markets, 2019-2020” using boldface. Then the visualisation is as shown below.</p>
+<p><img src="img/Bubble.png" style="width:70.0%" /></p>
+<h1 id="final-visualization">5. Final Visualization</h1>
+<h3 id="snapshot-of-dashboard">5.1 Snapshot of dashboard</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

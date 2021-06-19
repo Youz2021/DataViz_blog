@@ -86,7 +86,7 @@ Change the data type for Variables column by clicking the data type icon on the 
 5. Change column name
 
 Change the name of 'Variables - Split 1' to 'Markets' by clicking the name of this column.
-
+ 
 ![](img/change_name.png){width=40%}
 
 
@@ -130,10 +130,16 @@ Chang the data type for the 'Values' column to 'Numbers'  by clicking the data t
 
 1.1. Create Calculated Fields
 
-Click 'Analysis' and select 'Create Calculated Field', then input 'Export' as the name of this field and input the formula in the box below. Repeat the same step to create the field called Import using 'Import' to replace 'Export' in the formula.
+Click 'Analysis' and select 'Create Calculated Field', then input 'Export' as the name of this field and input the formula in the box below. Repeat the same step to create the field [Import] using 'Import' to replace 'Export' in the formula.
+and to create the field [Total],[Ranking_Total] and [Export_vs_Import] using the formula as shown below.
 
 ![](img/create-field.png){width=25%}
-![](img/export-formula.png){width=50%}
+
+![](img/export-formula.png){width=35%}
+![](img/Total.png){width=35%}
+![](img/export_vs_import.png){width=35%}
+
+![](img/rangking.png){width=35%}
 
 1.2 Drag data into canvas
 
@@ -141,38 +147,93 @@ Drag [Export] and [Import] to Columns and Rows respectively.
 
 ![](img/drag_export.png){width=40%}
 
+1.3 Apply Detail
 
-1.2 Change Axis value to Percentage
+Drag [Markets] to detail to show detailed markets.
 
-Change Y-axis and X-axis to percentage by clicking Analysis and selecting Percentage of - Table.
+![](img/detail.png){width=40%}
 
-![](img/percentage.png){width=50%}
+1.4 Add Reference Line
 
-1.3 Apply Detail 
+1.4.1 Drag [Import] to columns and right click [Import] to select dual-axis.
 
-Drag [Markets] to Detail,then the chart would show the detail for each Market.
+![](img/Dual_Axis.png){width=40%}
 
-![](img/detail.png){width=60%}
+1.4.2 Right click the top X-axis and select 'Synchronize Axis' and uncheck 'Show Header'.
 
-1.4 Change table calculation to percentile
+![](img/syn_axis.png){width=40%}
 
-Click the triangle sign of 'SUM(Import)' and 'SUM(Export)' and select 'Quick Table Calculation' and 'Percentile'. 
+1.4.3 Select 'SUM(Import)' pane and minimize the size.
 
-![](img/percentile.png){width=40%}
+![](img/line-size.png){width=30%}
 
-1.5 Change Compute Using
+1.4.4 Select 'SUM(Import)' pane and adjust the opacity to zero.
 
-Click the triangle sign of 'SUM(Import)' and 'SUM(Export)' and select 'Compute Using' and 'Markets'.
+![](img/line-color.png){width=30%}
 
-![](img/compute.png){width=40%}
+1.4.5 Remove 'Measure values' from the Mark pane.
 
-1.6 Apply color
+![](img/line-measure.png){width=30%}
 
-Drag [Export] to color,then click color and edit color. Select 'Green-Blue Diverging' for palette and the graph will be colored automatically.
+1.4.6 Right click the chart and select 'Trend Lines'-'Show Trend Lines'-'SUM(Import)'.
+
+![](img/line-show.png){width=30%}
+
+1.4.7 Change the format of the trend line to dot line by right click the trend line and select format, then change the 'Trend lines' to dot line.
+
+![](img/line-format.png){width=30%}
+
+
+1.5 Apply color
+
+Drag [Export_vs_Import] to color,then click color and edit color. Select 'orange' for 'Net Importer' and select 'blue' for 'Net Exporter'. Then change the marker type to circle.
 
 ![](img/color-sum.png){width=40%}
 
-1.6  
+1.6 Differentiate size
+
+Drag [Total] to size to adjust the size by dragging the size cursor.
+
+![](img/size.png){width=30%}
+
+1.7 Apply Filter
+
+Drag [Markets] to Filter pane and select by top 10 total values and  drag [Period] to Filter and select year from 2011 to 2020.
+
+![](img/top-ten.png){width=40%}
+
+1.8 Add Tooltip
+
+Drag [Ranking_Total] to Tooltip and change the computing use to 'Markets' by rignt click AGG(Ranking_Total).
+
+![](img/rangking.png){width=30%}
+
+1.9 Rename axis
+
+Rename y-axis to “Import Trade Value”. Rename x-axis to "Export Trade Value".
+
+1.10 Add title
+
+Add title "Merchandise Import Trade in Six Markets, 2019-2020" using boldface. Then the visualisation is as shown below.
+
+![](img/Bubble.png){width=70%}
+
+
+
+
+
+
+
+# 5. Final Visualization
+
+### 5.1 Snapshot of dashboard
+
+
+
+
+### 5.2 Major Insights
+
+* 
 
 
 
