@@ -1,7 +1,7 @@
 ---
 title: "DataViz Makeover 2"
 description: |
-  Explore perspectives of Singapore Merchandise Trade in multiple markets from 2011 to 2020.
+  Explore Performance of Singapore's Merchandise Trade with top ten trade partners from 2011 to 2020.
 author:
   - name: Youzhen Zhang
     url: https://example.com/norajones
@@ -51,6 +51,7 @@ The original design as shown below.
 
 ### 3.1 Sketch
 
+![](img/Design.jpg){width=55%}
 
 
 ### 3.2 Advantages of Proposed Design
@@ -285,12 +286,28 @@ Then the visualisation is as shown below.
 
 ### 5.2 Major Insights
 
-* Malaysia is a net exporter in 2011 while it becomes a net importer in 2020 for Singapore's merchandise trade. As shown below.
+* The total export value is higher than total import value for Singapore's merchandise trade with top ten trade partners although they still closer in past ten years. 
 
-![](img/malaysia-2011.png){width=30%}   ![](img/malaysia-2020.png){width=30%}
+![](img/all_trend.png){width=70%}
 
-The value of import exceeds export for Singapore's merchandise trade with Malaysia around 2018, then Malaysia becomes to net importer after 2019.
+* Although the export value is always more than the import value for Singapore's merchandise trade with Mainland China from 2011 to 2020,the import value keeps increasing in the past ten years, they are quite closer since 2018.
 
-![](img/malaysia-trend.png){width=50%}
+![](img/Mainland.png){width=50%}
 
-* 
+
+
+* Hong Kong is always a net exporter from 2011 to 2020, its value of both import and export keep stable and the export value is quite higher than import value.
+On the contrary, Taiwan is always a net importer in the past ten year, but its import and export value are sightly increasing from 2011 to 2020.
+
+![Hong KONG](img/HongKong.png){width=40%}![Taiwan](img/Taiwan.png){width=40%}
+
+
+* Malaysia is a net exporter in 2011 that means the value of import is less than the value of export at that time, while its import value exceeds its export value since 2019 and becomes a net importer.In comparison,the value of export exceeds import for Singapore's merchandise trade with United State in 2020,then United State is no longer a net importer as before but a net exporter in 2020.
+
+![Malaysia](img/Malaysia.png){width=40%}![](img/UnitedState.png){width=40%}
+
+
+
+
+
+
