@@ -283,12 +283,18 @@ Then the visualisation is as shown below.
 
 ![](img/final-dashboard.png){width=60%}
 
+Full visualisation available at [Tableau Public](https://public.tableau.com/app/profile/zhang.youzhen/viz/makeover-2-3rd/Dashboard1)
+
 
 ### 5.2 Major Insights
 
-* The total export value is higher than total import value for Singapore's merchandise trade with top ten trade partners although they still closer in past ten years. 
+* The import value and export value for each Singapore's merchandise top ten trade partner are more and more closer. They distribute far away from the trade-off line
+in 2011, that means the import value and export value for each trade partner is discerte, but they are converging to the trade-off line and almost 80% of them are around the trade-off line in 2020.
 
-![](img/all_trend.png){width=70%}
+![](img/2011-all_LI.jpg){width=40%}
+
+![](img/2020-all_LI.jpg){width=40%}
+
 
 * Although the export value is always more than the import value for Singapore's merchandise trade with Mainland China from 2011 to 2020,the import value keeps increasing in the past ten years, they are quite closer since 2018.
 
