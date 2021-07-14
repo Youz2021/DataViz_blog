@@ -34,7 +34,7 @@ This vehicle tracking data has been made available to law enforcement to support
 
 Also, Kronos based companies provide a Kronos Kares benefit card to GASTech employees giving them discounts and rewards in exchange for collecting information about their credit card purchases and preferences as recorded on loyalty cards. This data has been made available to investigators in the hopes that it can help resolve the situation.
 
-### 1.2 Ojectives of this report
+### 1.2 Objectives of this report
 
 The objectives of this case analysis report is to identify which GASTech employees made which purchases and identify suspicious patterns of behavior. 
 During the analysis, 3 aspects were taken into consideration:
@@ -61,7 +61,7 @@ We need to set up the environment and load all required packages first. The code
 packages = c('ggiraph', 'plotly', 'DT', 'patchwork',
              'tidyverse','raster', 'sf', 'igraph', 'tidygraph', 
              'ggraph', 'visNetwork', 
-             'lubridate', 'clock','tmap')
+             'lubridate', 'clock','tmap','rmarkdown')
 
 for (p in packages){
   if(!require(p, character.only = T)){
@@ -73,6 +73,61 @@ for (p in packages){
 
 ### 3.2 Import data
 
+The data was loaded using read_csv() of the readr package, which reads delimited files into a tibble.
+
+```{r}
+cc_data <- read_csv("MC2/cc_data.csv")
+loyalty_data <- read_csv("MC2/loyalty_data.csv")
+gps <- read_csv("MC2/gps.csv")
+```
+
+### 3.3 Transform data
+
+1. Change variables to the proper data type and create new variables for table merge.
+
+```{r}
+cc_data$timestamp <- date_time_parse(cc_data$timestamp,
+                                 zone = "",
+                                 format = "%d/%m/%Y %H:%M")
+
+cc_data$date <- substr(cc_data$timestamp,1,10)
+
+cc_data$date <- date_parse(cc_data$date,format = "%Y-%m-%d")
+
+loyalty_data$date <- date_parse(loyalty_data$timestamp,
+                                format = "%d/%m/%Y")
+```
+
+2. Merge data frames to get the view for credit and loyalty transaction data together.
+
+```{r}
+joint_cc_loyalty = cc_data %>% inner_join(loyalty_data,
+                                          by=c('location','price','date'))
+
+paged_table(joint_cc_loyalty)
+```
+
+3. Create new data frame to show the summarized data grouped by location.
+
+```{r}
+sum_by_location <- joint_cc_loyalty %>%
+select(location, price) %>%
+group_by(location) %>%
+summarise(total_price = sum(price))
+
+paged_table(sum_by_location)
+```
 
 
 
+```{r}
+
+glimpse(joint_cc_loyalty)
+glimpse(cc_data)
+glimpse(loyalty_data)
+```
+
+
+# 4. Proposed Visualisation
+
+# 5. Insights
