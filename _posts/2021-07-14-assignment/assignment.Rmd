@@ -15,12 +15,16 @@ output:
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(fig.retina = 3,
+                      echo = TRUE,
+                      eval = TRUE,
+                      message = FALSE,
+                      warning = FALSE)
 ```
 
-# 1. Backgroud
+# 1. Introduction
 
-### 1.1 Introduction of Case
+### 1.1 Backgroud of the case
 
 Several employees of GAStech go missing, the case is under investigation.
 
@@ -30,10 +34,10 @@ This vehicle tracking data has been made available to law enforcement to support
 
 Also, Kronos based companies provide a Kronos Kares benefit card to GASTech employees giving them discounts and rewards in exchange for collecting information about their credit card purchases and preferences as recorded on loyalty cards. This data has been made available to investigators in the hopes that it can help resolve the situation.
 
+### 1.2 Ojectives of this report
 
-### 1.2 Requirements
-
-The task in this case is to identify which GASTech employees made which purchases and identify suspicious patterns of behavior. 
+The objectives of this case analysis report is to identify which GASTech employees made which purchases and identify suspicious patterns of behavior. 
+During the analysis, 3 aspects were taken into consideration:
 
 1. Using just the credit and loyalty card data, identify the most popular locations, and when they are popular. Also, recommendations should be given to correct these anomalies.
 
@@ -41,7 +45,34 @@ The task in this case is to identify which GASTech employees made which purchase
 
 3. Infer the owners of each credit card and loyalty card and provide the evidences for that.
 
-# 2. ed 
+# 2. Literature Review
+
+In the literature review conducted, it was found that there were some geospatial data in the dataset. To delivery a clear analysis based on tracking movement trace, I examined how to visualise movement data by using appropriate R packages.
+
+To get a better understanding about the relationship between employee and credit card, some network data visualisation and analysis techiniques would be used. For example, build network graph visualisation using appropriate functions of ggraph.
+
+# 3. Data Preperation
+
+### 3.1 Install and load packages
+
+We need to set up the environment and load all required packages first. The code chunk below will install the packages if not yet installed, and load them to the environment.
+
+```{r}
+packages = c('ggiraph', 'plotly', 'DT', 'patchwork',
+             'tidyverse','raster', 'sf', 'igraph', 'tidygraph', 
+             'ggraph', 'visNetwork', 
+             'lubridate', 'clock','tmap')
+
+for (p in packages){
+  if(!require(p, character.only = T)){
+    install.packages(p)
+  }
+  library(p,character.only = T)
+}
+```
+
+### 3.2 Import data
+
 
 
 
