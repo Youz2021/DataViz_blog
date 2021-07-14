@@ -41,7 +41,7 @@ The task in this case is to identify which GASTech employees made which purchase
 
 3. Infer the owners of each credit card and loyalty card and provide the evidences for that.
 
-# 2. 
+# 2. ed 
 
 
 
