@@ -83,26 +83,31 @@ gps <- read.csv("MC2/gps.csv")
 
 ### 3.3 Transform data
 
-1. Change variables to the proper data type and create new variables for table merge.
+1. Change variables to the proper data type and create new variables for table merge and further analysis.
 
 ```{r}
 cc_data$timestamp <- date_time_parse(cc_data$timestamp,
                                  zone = "",
-                                 format = "%d/%m/%Y %H:%M")
+                                 format = "%m/%d/%Y %H:%M")
 
 cc_data$date <- substr(cc_data$timestamp,1,10)
 
 cc_data$date <- date_parse(cc_data$date,format = "%Y-%m-%d")
 
+cc_data$weekday <- wday(cc_data$date,label =TRUE, abbr = FALSE)
+
 loyalty_data$date <- date_parse(loyalty_data$timestamp,
-                                format = "%d/%m/%Y")
+                                format = "%m/%d/%Y")
+
+loyalty_data$weekday <- wday(loyalty_data$date,label =TRUE, abbr = FALSE)
+
 ```
 
 2. Merge data frames to get the view for credit and loyalty transaction data together.
 
 ```{r}
 joint_cc_loyalty = cc_data %>% inner_join(loyalty_data,
-                                          by=c('location','price','date'))
+                                          by=c('location','price','date','weekday'))
 
 paged_table(joint_cc_loyalty)
 ```
@@ -185,12 +190,36 @@ ggplot(sum_loyalty_data, aes(x = location)) +
 ```
 
 
-```{r}
-glimpse(joint_cc_loyalty)
-glimpse(cc_data)
-glimpse(loyalty_data)
+for the time of popularity
 
+```{r}
+popular_time <- joint_cc_loyalty %>%
+  select(location,date,timestamp.x,price,weekday) %>%
+  filter(location == "Katerina’s Café"|location == "Guy's Gyros"|location == "Hippokampos"|location == "Abila Airport"|location == "Nationwide Refinery"|location == "Carlyle Chemical Inc.") 
+
+popular_time$hour <- hour(popular_time$timestamp.x)
+
+popular_time_count <- popular_time %>%
+  group_by(location,date,hour) %>%
+  summarise(row_count = n())
 ```
+
+```{r}
+popular_time_count <- popular_time_count %>%
+  right_join(expand.grid(location = unique(popular_time$location),
+                       date = unique(popular_time$date),
+                       hour = c(1:23)),
+             by =c('location','date','hour')) %>%
+  replace_na(list(row_count = 0L)) %>% 
+  filter(location == "Katerina’s Café")
+``` 
+
+```{r}
+ggplot(popular_time_count,aes(date, hour, fill= row_count)) + 
+geom_tile()
+```
+
+
 
 
 # 4. Proposed Visualisation
