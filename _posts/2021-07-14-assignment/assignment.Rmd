@@ -148,20 +148,41 @@ paged_table(sum_loyalty_data)
 for joint:
 
 ```{r}
-p <- ggplot(sum_by_location)  + 
-    geom_bar(aes(x=location, y=total_count), stat="identity", fill="tan1", colour="sienna3")+
-  geom_line(aes(x=location, y=total_price), stat="identity")+
-  geom_text(aes(label=total_price, x=location, y=total_price), colour="black")+
-  geom_text(aes(label=total_count, x=location, y=total_count), colour="black")+
-  scale_y_continuous(sec.axis = sec_axis(~./max(sum_by_location$total_count)))
+ggplot(sum_by_location, aes(x = location)) +
+  geom_col(aes( y = total_count, fill="steelblue")) +
+  geom_line(aes(y = total_price/500, group = 1, color = 'orange')) +
+  geom_point(aes(x=location, y=sum_by_location$total_price/500, color="orange"))+
+  scale_y_continuous(name = "Frequency", sec.axis = sec_axis(trans = ~ .* 500,name = "Price")) +
+  scale_fill_manual('', labels = 'Frequency', values = "steelblue") +
+  scale_color_manual('', labels = 'Total Price', values = 'orange') +
+  theme(axis.text.x = element_text(angle = 90),legend.position="bottom")
 ```
+
 
 for cc_data:
 
 ```{r}
-
+ggplot(sum_cc_data, aes(x = location)) +
+  geom_col(aes( y = total_count, fill="steelblue")) +
+  geom_line(aes(y = total_price/500, group = 1, color = 'orange')) +
+  geom_point(aes(x=location, y=sum_cc_data$total_price/500, color="orange"))+
+  scale_y_continuous(name = "Frequency", sec.axis = sec_axis(trans = ~ .* 500,name = "Price")) +
+  scale_fill_manual('', labels = 'Frequency', values = "steelblue") +
+  scale_color_manual('', labels = 'Total Price', values = 'orange') +
+  theme(axis.text.x = element_text(angle = 90),legend.position="bottom")
 ```
 
+for loyalty_data:
+```{r}
+ggplot(sum_loyalty_data, aes(x = location)) +
+  geom_col(aes( y = total_count, fill="steelblue")) +
+  geom_line(aes(y = total_price/500, group = 1, color = 'orange')) +
+  geom_point(aes(x=location, y=sum_loyalty_data$total_price/500, color="orange"))+
+  scale_y_continuous(name = "Frequency", sec.axis = sec_axis(trans = ~ .* 500,name = "Price")) +
+  scale_fill_manual('', labels = 'Frequency', values = "steelblue") +
+  scale_color_manual('', labels = 'Total Price', values = 'orange') +
+  theme(axis.text.x = element_text(angle = 90),legend.position="bottom")
+```
 
 
 ```{r}
