@@ -49,7 +49,7 @@ During the analysis, 3 aspects were taken into consideration:
 
 In the literature review conducted, it was found that there were some geospatial data in the dataset. To delivery a clear analysis based on tracking movement trace, I examined how to visualise movement data by using appropriate R packages.
 
-To get a better understanding about the relationship between employee and credit card, some network data visualisation and analysis techiniques would be used. For example, build network graph visualisation using appropriate functions of ggraph.
+To get a better understanding about the relationship between employee and credit card, some network data visualisation and analysis techniques would be used. For example, build network graph visualisation using appropriate functions of ggraph.
 
 # 3. Data Preperation
 
@@ -73,12 +73,12 @@ for (p in packages){
 
 ### 3.2 Import data
 
-The data was loaded using read_csv() of the readr package, which reads delimited files into a tibble.
+The data was loaded using read.csv() of the readr package, which reads delimited files into a tibble.
 
 ```{r}
-cc_data <- read_csv("MC2/cc_data.csv")
-loyalty_data <- read_csv("MC2/loyalty_data.csv")
-gps <- read_csv("MC2/gps.csv")
+cc_data <- read.csv("MC2/cc_data.csv")
+loyalty_data <- read.csv("MC2/loyalty_data.csv")
+gps <- read.csv("MC2/gps.csv")
 ```
 
 ### 3.3 Transform data
@@ -109,22 +109,66 @@ paged_table(joint_cc_loyalty)
 
 3. Create new data frame to show the summarized data grouped by location.
 
+for joint_data:
+
 ```{r}
 sum_by_location <- joint_cc_loyalty %>%
 select(location, price) %>%
 group_by(location) %>%
-summarise(total_price = sum(price))
+summarise(total_price = sum(price), total_count = n()) %>%
+arrange(desc(total_count), desc(total_price))
 
 paged_table(sum_by_location)
+```
+for cc_data:
+
+```{r}
+sum_cc_data <- cc_data %>%
+select(location, price) %>%
+group_by(location) %>%
+summarise(total_price = sum(price), total_count = n()) %>%
+arrange(desc(total_count), desc(total_price))
+
+paged_table(sum_cc_data)
+```
+
+for loyalty_data:
+
+```{r}
+sum_loyalty_data <- loyalty_data %>%
+select(location, price) %>%
+group_by(location) %>%
+summarise(total_price = sum(price), total_count = n()) %>%
+arrange(desc(total_count), desc(total_price))
+
+paged_table(sum_loyalty_data)
+```
+
+4. plot data:
+for joint:
+
+```{r}
+p <- ggplot(sum_by_location)  + 
+    geom_bar(aes(x=location, y=total_count), stat="identity", fill="tan1", colour="sienna3")+
+  geom_line(aes(x=location, y=total_price), stat="identity")+
+  geom_text(aes(label=total_price, x=location, y=total_price), colour="black")+
+  geom_text(aes(label=total_count, x=location, y=total_count), colour="black")+
+  scale_y_continuous(sec.axis = sec_axis(~./max(sum_by_location$total_count)))
+```
+
+for cc_data:
+
+```{r}
+
 ```
 
 
 
 ```{r}
-
 glimpse(joint_cc_loyalty)
 glimpse(cc_data)
 glimpse(loyalty_data)
+
 ```
 
 
