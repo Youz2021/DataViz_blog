@@ -83,7 +83,7 @@ gps <- read.csv("MC2/gps.csv")
 
 ### 3.3 Data processing
 
-1. Change variables to the proper data type and create new variables for further analysis.
+1. Change variables to the proper data type and create new variables for further analysis. Then show the dataframe to view. 
 
 ```{r}
 cc_data$timestamp <- date_time_parse(cc_data$timestamp,
@@ -101,11 +101,11 @@ loyalty_data$date <- date_parse(loyalty_data$timestamp,
 
 loyalty_data$weekday <- wday(loyalty_data$date,label =TRUE, abbr = FALSE)
 
+glimpse(cc_data)
+glimpse(loyalty_data)
 ```
 
-2. Create new data frame to show the summarized price and frequency for locations for both 
-credit card data and loyalty data to compare whether they can match.
-for joint_data:
+2. Merge credit card data and loyalty card data into a new dataframe to make up the missing transactions in credit card data since the data in credit card dataset is unconsistent with the data in loyalty card dataset.
 
 ```{r}
 joint_cc_loyalty = cc_data %>% inner_join(loyalty_data,
@@ -118,7 +118,11 @@ arrange(desc(total_count), desc(total_price))
 
 glimpse(sum_by_location)
 ```
-For cc_data:
+
+3. Create new data frame to show the summarized price and frequency for locations for both 
+credit card data and loyalty data to compare whether they can match.
+
+For credit card data:
 
 ```{r}
 sum_cc_data <- cc_data %>%
@@ -129,7 +133,7 @@ arrange(desc(total_count), desc(total_price))
 
 glimpse(sum_cc_data)
 ```
-For loyalty_data:
+For loyalty card data:
 
 ```{r}
 sum_loyalty_data <- loyalty_data %>%
@@ -140,6 +144,9 @@ arrange(desc(total_count), desc(total_price))
 
 glimpse(sum_loyalty_data)
 ```
+
+
+
 
 # 4. Proposed visualisation
 
@@ -159,7 +166,9 @@ ggplot(sum_by_location, aes(x = location)) +
 ```
 ### 4.2 Most popular timeslot
 
-Based on the most popular location, we explore the most popular time people visit in 24 hours each day using heatmap graph, the darker the color is, the more popular the time is.
+Based on the most popular location, we explore the most popular time people visit in 24 hours each day using heatmap graph, the darker the color is, the more popular the place is in this timeslot.
+
+So, for Katerina’s Café, most of people go there around 13pm to 15pm and 19pm to 21pm each day.
 
 ```{r}
 popular_time <- joint_cc_loyalty %>%
@@ -177,8 +186,17 @@ popular_time_count <- popular_time_count %>%
                        date = unique(popular_time$date),
                        hour = c(1:23)),
              by =c('location','date','hour')) %>%
-  replace_na(list(frequency = 0L)) 
-``` 
+  replace_na(list(frequency = 0L))
+
+ggplot(popular_time_count,aes(date, hour, fill= frequency)) + 
+geom_tile(color = 'white',size = 0.1) + 
+  facet_grid(~location) +
+   scale_fill_distiller(palette = "orange",direction = 1)+
+  scale_x_date(breaks = popular_time_count$date[seq(1, length(popular_time_count$date), by = 2)])+
+  scale_y_continuous(breaks = seq(1,24,2)) +
+  theme(axis.text.x = element_text(angle = 90),legend.position="bottom")
+```
+
 
 
 for cc_data:
@@ -194,6 +212,7 @@ ggplot(sum_cc_data, aes(x = location)) +
   theme(axis.text.x = element_text(angle = 90),legend.position="bottom")
 ```
 
+
 for loyalty_data:
 ```{r}
 ggplot(sum_loyalty_data, aes(x = location)) +
@@ -207,21 +226,16 @@ ggplot(sum_loyalty_data, aes(x = location)) +
 ```
 
 
-
-
-
-
-```{r}
-ggplot(popular_time_count,aes(date, hour, fill= frequency)) + 
-geom_tile(color = 'white',size = 0.1) + 
-  facet_grid(~location) +
-   scale_fill_distiller(palette = "orange",direction = 1)+
-  theme(axis.text.x = element_text(angle = 90),legend.position="bottom")
-```
-
-
-
-
-
-
 # 5. Insights
+
+### 5.1 Anomalies about credit card and loyalty data
+
+As loyalty cards data is always generated from credit cards data, both the data should be same by right. However, the some transactions data in credit card dataset are not consistent with the data in loyalty dataset. There are 1490 and 1392 transactions in credit card dataset and loyalty dataset respectively. Also, just 1087 transactions can match based on the location, timestamp and price spent for each transaction.
+
+
+
+
+
+
+
+
