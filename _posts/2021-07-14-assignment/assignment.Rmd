@@ -81,9 +81,9 @@ loyalty_data <- read.csv("MC2/loyalty_data.csv")
 gps <- read.csv("MC2/gps.csv")
 ```
 
-### 3.3 Transform data
+### 3.3 Data processing
 
-1. Change variables to the proper data type and create new variables for table merge and further analysis.
+1. Change variables to the proper data type and create new variables for further analysis.
 
 ```{r}
 cc_data$timestamp <- date_time_parse(cc_data$timestamp,
@@ -103,29 +103,22 @@ loyalty_data$weekday <- wday(loyalty_data$date,label =TRUE, abbr = FALSE)
 
 ```
 
-2. Merge data frames to get the view for credit and loyalty transaction data together.
+2. Create new data frame to show the summarized price and frequency for locations for both 
+credit card data and loyalty data to compare whether they can match.
+for joint_data:
 
 ```{r}
 joint_cc_loyalty = cc_data %>% inner_join(loyalty_data,
                                           by=c('location','price','date','weekday'))
-
-paged_table(joint_cc_loyalty)
-```
-
-3. Create new data frame to show the summarized data grouped by location.
-
-for joint_data:
-
-```{r}
 sum_by_location <- joint_cc_loyalty %>%
 select(location, price) %>%
 group_by(location) %>%
 summarise(total_price = sum(price), total_count = n()) %>%
 arrange(desc(total_count), desc(total_price))
 
-paged_table(sum_by_location)
+glimpse(sum_by_location)
 ```
-for cc_data:
+For cc_data:
 
 ```{r}
 sum_cc_data <- cc_data %>%
@@ -134,10 +127,9 @@ group_by(location) %>%
 summarise(total_price = sum(price), total_count = n()) %>%
 arrange(desc(total_count), desc(total_price))
 
-paged_table(sum_cc_data)
+glimpse(sum_cc_data)
 ```
-
-for loyalty_data:
+For loyalty_data:
 
 ```{r}
 sum_loyalty_data <- loyalty_data %>%
@@ -146,11 +138,14 @@ group_by(location) %>%
 summarise(total_price = sum(price), total_count = n()) %>%
 arrange(desc(total_count), desc(total_price))
 
-paged_table(sum_loyalty_data)
+glimpse(sum_loyalty_data)
 ```
 
-4. plot data:
-for joint:
+# 4. Proposed visualisation
+
+### 4.1 Most popular location
+
+we identify the most popular location based on shopping frequency and the amount of money spent. Katerina’s Café is the place people go and visit most. Also, Abila Airport is the place people spent most.
 
 ```{r}
 ggplot(sum_by_location, aes(x = location)) +
@@ -162,6 +157,28 @@ ggplot(sum_by_location, aes(x = location)) +
   scale_color_manual('', labels = 'Total Price', values = 'orange') +
   theme(axis.text.x = element_text(angle = 90),legend.position="bottom")
 ```
+### 4.2 Most popular timeslot
+
+Based on the most popular location, we explore the most popular time people visit in 24 hours each day using heatmap graph, the darker the color is, the more popular the time is.
+
+```{r}
+popular_time <- joint_cc_loyalty %>%
+  select(location,date,timestamp.x,price,weekday) %>%
+  filter(location == "Katerina’s Café"|location == "Abila Airport") 
+
+popular_time$hour <- hour(popular_time$timestamp.x)
+
+popular_time_count <- popular_time %>%
+  group_by(location,date,hour) %>%
+  summarise(frequency = n())
+
+popular_time_count <- popular_time_count %>%
+  right_join(expand.grid(location = unique(popular_time$location),
+                       date = unique(popular_time$date),
+                       hour = c(1:23)),
+             by =c('location','date','hour')) %>%
+  replace_na(list(frequency = 0L)) 
+``` 
 
 
 for cc_data:
@@ -190,38 +207,21 @@ ggplot(sum_loyalty_data, aes(x = location)) +
 ```
 
 
-for the time of popularity
+
+
+
 
 ```{r}
-popular_time <- joint_cc_loyalty %>%
-  select(location,date,timestamp.x,price,weekday) %>%
-  filter(location == "Katerina’s Café"|location == "Guy's Gyros"|location == "Hippokampos"|location == "Abila Airport"|location == "Nationwide Refinery"|location == "Carlyle Chemical Inc.") 
-
-popular_time$hour <- hour(popular_time$timestamp.x)
-
-popular_time_count <- popular_time %>%
-  group_by(location,date,hour) %>%
-  summarise(row_count = n())
-```
-
-```{r}
-popular_time_count <- popular_time_count %>%
-  right_join(expand.grid(location = unique(popular_time$location),
-                       date = unique(popular_time$date),
-                       hour = c(1:23)),
-             by =c('location','date','hour')) %>%
-  replace_na(list(row_count = 0L)) %>% 
-  filter(location == "Katerina’s Café")
-``` 
-
-```{r}
-ggplot(popular_time_count,aes(date, hour, fill= row_count)) + 
-geom_tile()
+ggplot(popular_time_count,aes(date, hour, fill= frequency)) + 
+geom_tile(color = 'white',size = 0.1) + 
+  facet_grid(~location) +
+   scale_fill_distiller(palette = "orange",direction = 1)+
+  theme(axis.text.x = element_text(angle = 90),legend.position="bottom")
 ```
 
 
 
 
-# 4. Proposed Visualisation
+
 
 # 5. Insights
