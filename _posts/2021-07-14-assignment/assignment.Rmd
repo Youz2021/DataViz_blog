@@ -116,33 +116,39 @@ arrange(desc(total_count), desc(total_price))
 
 colnames(joint_cc_loyalty)[1] <- "timestamp"
 
-glimpse(sum_by_location)
-```
-
-```{r}
 new_cc_data <- merge(cc_data, joint_cc_loyalty,
-                                     by=c('timestamp','location','price','last4ccnum'),
-                     all=TRUE)
+                              by=c('timestamp','location','price','last4ccnum'),all=TRUE)
           
 new_loyalty_data <- merge(loyalty_data, joint_cc_loyalty,
-                                     by.x =c('timestamp','location','price','loyaltynum'),
+                          by.x=c('timestamp','location','price','loyaltynum'),
                           by.y =c('timestamp.y','location','price','loyaltynum'),
-                     all=TRUE)
+                          all=TRUE)
+
+new_cc_data <-new_cc_data[!((new_cc_data$last4ccnum =="4795" & new_cc_data$loyaltynum =="L2070") | (new_cc_data$last4ccnum =="4948" & new_cc_data$loyaltynum =="L3295") | (new_cc_data$last4ccnum =="5368" & new_cc_data$loyaltynum =="L6119") | (new_cc_data$last4ccnum =="5921" & new_cc_data$loyaltynum =="L2247") | (new_cc_data$last4ccnum =="8332" & new_cc_data$loyaltynum =="L8566") |
+(new_cc_data$last4ccnum =="7889" & new_cc_data$loyaltynum =="L2247")),] %>%
+  select(timestamp,location, price,last4ccnum,date.x,loyaltynum)
+
 
 glimpse(new_cc_data)
-glimpse(new_loyalty_data)
 ```
 
-count the duplicates
+3. Mapping the credit card and loyalty card based on the transactions with same location, transaction timestamp and price.
+
 ```{r}
-duplicates <- joint_cc_loyalty %>%
-select(location, price,date) %>%
-group_by(location,price,date) %>%
+cards_mapping <- new_cc_data %>%
+select(last4ccnum,loyaltynum) %>%
+filter(loyaltynum>0) %>%
+group_by(last4ccnum,loyaltynum) %>%
 summarise(total_count = n()) %>%
 arrange(desc(total_count))
 
-glimpse(duplicates)
+duplicates_update <- cards_mapping %>%
+  group_by(last4ccnum) %>%
+  summarise(no_count=n())
+
+
 ```
+
 
 
 3. Create new data frame to show the summarized price and frequency for locations for both 

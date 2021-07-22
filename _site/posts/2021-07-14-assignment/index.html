@@ -2226,73 +2226,48 @@ $ date       &lt;date&gt; 2014-01-06, 2014-01-06, 2014-01-06, 2014-01-06, ~</cod
 
 <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>joint_cc_loyalty</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"timestamp"</span>
 
-<span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>sum_by_location</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>Rows: 32
-Columns: 3
-$ location    &lt;chr&gt; &quot;Katerina’s Café&quot;, &quot;Guy&#39;s Gyros&quot;, &quot;Hippokampos&quot;,~
-$ total_price &lt;dbl&gt; 4399.52, 3085.83, 3692.55, 1191.42, 1892.51, 694~
-$ total_count &lt;int&gt; 155, 121, 117, 111, 62, 60, 53, 52, 48, 36, 34, ~</code></pre>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>new_cc_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/merge.html'>merge</a></span><span class='op'>(</span><span class='va'>cc_data</span>, <span class='va'>joint_cc_loyalty</span>,
-                                     by<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'timestamp'</span>,<span class='st'>'location'</span>,<span class='st'>'price'</span>,<span class='st'>'last4ccnum'</span><span class='op'>)</span>,
-                     all<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>new_cc_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/merge.html'>merge</a></span><span class='op'>(</span><span class='va'>cc_data</span>, <span class='va'>joint_cc_loyalty</span>,
+                              by<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'timestamp'</span>,<span class='st'>'location'</span>,<span class='st'>'price'</span>,<span class='st'>'last4ccnum'</span><span class='op'>)</span>,all<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
           
 <span class='va'>new_loyalty_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/merge.html'>merge</a></span><span class='op'>(</span><span class='va'>loyalty_data</span>, <span class='va'>joint_cc_loyalty</span>,
-                                     by.x <span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'timestamp'</span>,<span class='st'>'location'</span>,<span class='st'>'price'</span>,<span class='st'>'loyaltynum'</span><span class='op'>)</span>,
+                          by.x<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'timestamp'</span>,<span class='st'>'location'</span>,<span class='st'>'price'</span>,<span class='st'>'loyaltynum'</span><span class='op'>)</span>,
                           by.y <span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'timestamp.y'</span>,<span class='st'>'location'</span>,<span class='st'>'price'</span>,<span class='st'>'loyaltynum'</span><span class='op'>)</span>,
-                     all<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+                          all<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='va'>new_cc_data</span> <span class='op'>&lt;-</span><span class='va'>new_cc_data</span><span class='op'>[</span><span class='op'>!</span><span class='op'>(</span><span class='op'>(</span><span class='va'>new_cc_data</span><span class='op'>$</span><span class='va'>last4ccnum</span> <span class='op'>==</span><span class='st'>"4795"</span> <span class='op'>&amp;</span> <span class='va'>new_cc_data</span><span class='op'>$</span><span class='va'>loyaltynum</span> <span class='op'>==</span><span class='st'>"L2070"</span><span class='op'>)</span> <span class='op'>|</span> <span class='op'>(</span><span class='va'>new_cc_data</span><span class='op'>$</span><span class='va'>last4ccnum</span> <span class='op'>==</span><span class='st'>"4948"</span> <span class='op'>&amp;</span> <span class='va'>new_cc_data</span><span class='op'>$</span><span class='va'>loyaltynum</span> <span class='op'>==</span><span class='st'>"L3295"</span><span class='op'>)</span> <span class='op'>|</span> <span class='op'>(</span><span class='va'>new_cc_data</span><span class='op'>$</span><span class='va'>last4ccnum</span> <span class='op'>==</span><span class='st'>"5368"</span> <span class='op'>&amp;</span> <span class='va'>new_cc_data</span><span class='op'>$</span><span class='va'>loyaltynum</span> <span class='op'>==</span><span class='st'>"L6119"</span><span class='op'>)</span> <span class='op'>|</span> <span class='op'>(</span><span class='va'>new_cc_data</span><span class='op'>$</span><span class='va'>last4ccnum</span> <span class='op'>==</span><span class='st'>"5921"</span> <span class='op'>&amp;</span> <span class='va'>new_cc_data</span><span class='op'>$</span><span class='va'>loyaltynum</span> <span class='op'>==</span><span class='st'>"L2247"</span><span class='op'>)</span> <span class='op'>|</span> <span class='op'>(</span><span class='va'>new_cc_data</span><span class='op'>$</span><span class='va'>last4ccnum</span> <span class='op'>==</span><span class='st'>"8332"</span> <span class='op'>&amp;</span> <span class='va'>new_cc_data</span><span class='op'>$</span><span class='va'>loyaltynum</span> <span class='op'>==</span><span class='st'>"L8566"</span><span class='op'>)</span> <span class='op'>|</span>
+<span class='op'>(</span><span class='va'>new_cc_data</span><span class='op'>$</span><span class='va'>last4ccnum</span> <span class='op'>==</span><span class='st'>"7889"</span> <span class='op'>&amp;</span> <span class='va'>new_cc_data</span><span class='op'>$</span><span class='va'>loyaltynum</span> <span class='op'>==</span><span class='st'>"L2247"</span><span class='op'>)</span><span class='op'>)</span>,<span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>select</span><span class='op'>(</span><span class='va'>timestamp</span>,<span class='va'>location</span>, <span class='va'>price</span>,<span class='va'>last4ccnum</span>,<span class='va'>date.x</span>,<span class='va'>loyaltynum</span><span class='op'>)</span>
+
 
 <span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>new_cc_data</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>Rows: 1,496
-Columns: 8
-$ timestamp   &lt;dttm&gt; 2014-01-06 07:28:00, 2014-01-06 07:34:00, 2014-~
-$ location    &lt;chr&gt; &quot;Brew&#39;ve Been Served&quot;, &quot;Hallowed Grounds&quot;, &quot;Brew~
-$ price       &lt;dbl&gt; 11.34, 52.22, 8.33, 16.72, 4.24, 4.17, 28.73, 9.~
-$ last4ccnum  &lt;int&gt; 4795, 7108, 6816, 9617, 7384, 5368, 7253, 4948, ~
-$ date.x      &lt;date&gt; 2014-01-06, 2014-01-06, 2014-01-06, 2014-01-06,~
-$ date.y      &lt;date&gt; 2014-01-06, NA, 2014-01-06, 2014-01-06, 2014-01~
-$ timestamp.y &lt;chr&gt; &quot;01/06/2014&quot;, NA, &quot;01/06/2014&quot;, &quot;01/06/2014&quot;, &quot;0~
-$ loyaltynum  &lt;chr&gt; &quot;L8566&quot;, NA, &quot;L8148&quot;, &quot;L5553&quot;, &quot;L3800&quot;, &quot;L2247&quot;,~</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>new_loyalty_data</span><span class='op'>)</span>
-</code></pre>
+<pre><code>Rows: 1,491
+Columns: 6
+$ timestamp  &lt;dttm&gt; 2014-01-06 07:28:00, 2014-01-06 07:34:00, 2014-0~
+$ location   &lt;chr&gt; &quot;Brew&#39;ve Been Served&quot;, &quot;Hallowed Grounds&quot;, &quot;Brew&#39;~
+$ price      &lt;dbl&gt; 11.34, 52.22, 8.33, 16.72, 4.24, 4.17, 28.73, 9.6~
+$ last4ccnum &lt;int&gt; 4795, 7108, 6816, 9617, 7384, 5368, 7253, 4948, 9~
+$ date.x     &lt;date&gt; 2014-01-06, 2014-01-06, 2014-01-06, 2014-01-06, ~
+$ loyaltynum &lt;chr&gt; &quot;L8566&quot;, NA, &quot;L8148&quot;, &quot;L5553&quot;, &quot;L3800&quot;, &quot;L2247&quot;, ~</code></pre>
 </div>
-<pre><code>Rows: 1,398
-Columns: 8
-$ timestamp   &lt;chr&gt; &quot;01/06/2014&quot;, &quot;01/06/2014&quot;, &quot;01/06/2014&quot;, &quot;01/06~
-$ location    &lt;chr&gt; &quot;Abila Airport&quot;, &quot;Abila Airport&quot;, &quot;Abila Airport~
-$ price       &lt;dbl&gt; 612.47, 777.06, 4540.08, 12.05, 18.11, 23.15, 26~
-$ loyaltynum  &lt;chr&gt; &quot;L2769&quot;, &quot;L4063&quot;, &quot;L4063&quot;, &quot;L9254&quot;, &quot;L6544&quot;, &quot;L3~
-$ date.x      &lt;date&gt; 2014-01-06, 2014-01-06, 2014-01-06, 2014-01-06,~
-$ timestamp.y &lt;dttm&gt; 2014-01-06 15:39:00, 2014-01-06 15:14:00, 2014-~
-$ last4ccnum  &lt;int&gt; 8642, 9220, 9220, NA, NA, 9405, NA, 7688, 1286, ~
-$ date.y      &lt;date&gt; 2014-01-06, 2014-01-06, 2014-01-06, NA, NA, 201~</code></pre>
-</div>
-count the duplicates
+<ol start="3" type="1">
+<li>Mapping the credit card and loyalty card based on the transactions with same location, transaction timestamp and price.</li>
+</ol>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>duplicates</span> <span class='op'>&lt;-</span> <span class='va'>joint_cc_loyalty</span> <span class='op'>%&gt;%</span>
-<span class='fu'>select</span><span class='op'>(</span><span class='va'>location</span>, <span class='va'>price</span>,<span class='va'>date</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-<span class='fu'>group_by</span><span class='op'>(</span><span class='va'>location</span>,<span class='va'>price</span>,<span class='va'>date</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cards_mapping</span> <span class='op'>&lt;-</span> <span class='va'>new_cc_data</span> <span class='op'>%&gt;%</span>
+<span class='fu'>select</span><span class='op'>(</span><span class='va'>last4ccnum</span>,<span class='va'>loyaltynum</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>loyaltynum</span><span class='op'>&gt;</span><span class='fl'>0</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='fu'>group_by</span><span class='op'>(</span><span class='va'>last4ccnum</span>,<span class='va'>loyaltynum</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
 <span class='fu'>summarise</span><span class='op'>(</span>total_count <span class='op'>=</span> <span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
 <span class='fu'>arrange</span><span class='op'>(</span><span class='fu'>desc</span><span class='op'>(</span><span class='va'>total_count</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>duplicates</span><span class='op'>)</span>
+<span class='va'>duplicates_update</span> <span class='op'>&lt;-</span> <span class='va'>cards_mapping</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>last4ccnum</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>summarise</span><span class='op'>(</span>no_count<span class='op'>=</span><span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>Rows: 1,078
-Columns: 4
-Groups: location, price [1,058]
-$ location    &lt;chr&gt; &quot;Guy&#39;s Gyros&quot;, &quot;Hippokampos&quot;, &quot;Katerina’s Café&quot;,~
-$ price       &lt;dbl&gt; 8.23, 63.21, 26.60, 124.89, 228.41, 612.47, 777.~
-$ date        &lt;date&gt; 2014-01-09, 2014-01-11, 2014-01-09, 2014-01-07,~
-$ total_count &lt;int&gt; 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~</code></pre>
 </div>
 <ol start="3" type="1">
 <li>Create new data frame to show the summarized price and frequency for locations for both credit card data and loyalty data to compare whether they can match.</li>
@@ -2348,7 +2323,7 @@ $ total_count &lt;int&gt; 195, 155, 146, 140, 84, 80, 71, 66, 60, 45, 42, ~</cod
   <span class='fu'>theme</span><span class='op'>(</span>axis.text.x <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>angle <span class='op'>=</span> <span class='fl'>90</span><span class='op'>)</span>,legend.position<span class='op'>=</span><span class='st'>"bottom"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="assignment_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
+<p><img src="assignment_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
 </div>
 <h3 id="most-popular-timeslot">4.2 Most popular timeslot</h3>
 <p>Based on the most popular location, we explore the most popular time people visit in 24 hours each day using heatmap graph, the darker the color is, the more popular the place is in this timeslot.</p>
@@ -2381,7 +2356,7 @@ $ total_count &lt;int&gt; 195, 155, 146, 140, 84, 80, 71, 66, 60, 45, 42, ~</cod
   <span class='fu'>theme</span><span class='op'>(</span>axis.text.x <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>angle <span class='op'>=</span> <span class='fl'>90</span><span class='op'>)</span>,legend.position<span class='op'>=</span><span class='st'>"bottom"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="assignment_files/figure-html5/unnamed-chunk-10-1.png" width="624" /></p>
+<p><img src="assignment_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
 </div>
 <p>for cc_data:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2396,7 +2371,7 @@ $ total_count &lt;int&gt; 195, 155, 146, 140, 84, 80, 71, 66, 60, 45, 42, ~</cod
   <span class='fu'>theme</span><span class='op'>(</span>axis.text.x <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>angle <span class='op'>=</span> <span class='fl'>90</span><span class='op'>)</span>,legend.position<span class='op'>=</span><span class='st'>"bottom"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="assignment_files/figure-html5/unnamed-chunk-11-1.png" width="624" /></p>
+<p><img src="assignment_files/figure-html5/unnamed-chunk-10-1.png" width="624" /></p>
 </div>
 for loyalty_data:
 <div class="layout-chunk" data-layout="l-body">
@@ -2411,12 +2386,12 @@ for loyalty_data:
   <span class='fu'>theme</span><span class='op'>(</span>axis.text.x <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>angle <span class='op'>=</span> <span class='fl'>90</span><span class='op'>)</span>,legend.position<span class='op'>=</span><span class='st'>"bottom"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="assignment_files/figure-html5/unnamed-chunk-12-1.png" width="624" /></p>
+<p><img src="assignment_files/figure-html5/unnamed-chunk-11-1.png" width="624" /></p>
 </div>
 <h1 id="insights">5. Insights</h1>
 <h3 id="anomalies-about-credit-card-and-loyalty-data">5.1 Anomalies about credit card and loyalty data</h3>
 <p>As loyalty cards data is always generated from credit cards data, both the data should be same by right. However, the some transactions data in credit card dataset are not consistent with the data in loyalty dataset. There are 1490 and 1392 transactions in credit card dataset and loyalty dataset respectively. Also, just 1087 transactions can match based on the location, timestamp and price spent for each transaction.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
