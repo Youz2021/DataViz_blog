@@ -83,8 +83,7 @@ gps <- read.csv("MC2/gps.csv")
 
 ### 3.3 Data processing
 
-1. Change variables to the proper data type and create new variables for further analysis. Then show the dataframe to view. 
-
+1. Change variables to the proper data type and create new variables for further analysis.
 
 ```{r}
 cc_data$timestamp <- date_time_parse(cc_data$timestamp,
@@ -95,117 +94,51 @@ cc_data$date <- substr(cc_data$timestamp,1,10)
 
 cc_data$date <- date_parse(cc_data$date,format = "%Y-%m-%d")
 
-
 loyalty_data$date <- date_parse(loyalty_data$timestamp,
                                 format = "%m/%d/%Y")
-
-glimpse(cc_data)
-glimpse(loyalty_data)
 ```
 
-2. Merge credit card data and loyalty card data into a new data frame to make up the missing transactions in credit card data since the data in credit card data is inconsistent with the data in loyalty card data.
+2. Combine credit card data and loyalty card data into a new data frame based on the same location, timestamp and price in order to identify the most popular place and the most popular timeslot. Also, rename the columns for the new data frame.
 
 ```{r}
-joint_cc_loyalty = cc_data %>% inner_join(loyalty_data,
+combine_cc_loyalty = cc_data %>% inner_join(loyalty_data,
                                           by=c('location','price','date'))
-sum_by_location <- joint_cc_loyalty %>%
+sum_by_location <- combine_cc_loyalty %>%
 select(location, price) %>%
 group_by(location) %>%
 summarise(total_price = sum(price), total_count = n()) %>%
 arrange(desc(total_count), desc(total_price))
 
-colnames(joint_cc_loyalty)[1] <- "timestamp"
-
-new_cc_data <- merge(cc_data, joint_cc_loyalty,
-                              by=c('timestamp','location','price','last4ccnum'),all=TRUE)
-          
-new_loyalty_data <- merge(loyalty_data, joint_cc_loyalty,
-                          by.x=c('timestamp','location','price','loyaltynum'),
-                          by.y =c('timestamp.y','location','price','loyaltynum'),
-                          all=TRUE)
-
-new_cc_data <-new_cc_data[!((new_cc_data$last4ccnum =="4795" & new_cc_data$loyaltynum =="L2070") | (new_cc_data$last4ccnum =="4948" & new_cc_data$loyaltynum =="L3295") | (new_cc_data$last4ccnum =="5368" & new_cc_data$loyaltynum =="L6119") | (new_cc_data$last4ccnum =="5921" & new_cc_data$loyaltynum =="L2247") | (new_cc_data$last4ccnum =="8332" & new_cc_data$loyaltynum =="L8566") |
-(new_cc_data$last4ccnum =="7889" & new_cc_data$loyaltynum =="L2247")),] %>%
-  select(timestamp,location, price,last4ccnum,date.x,loyaltynum)
-
-
-glimpse(new_cc_data)
-```
-
-3. Mapping the credit card and loyalty card based on the transactions with same location, transaction timestamp and price.
-
-```{r}
-cards_mapping <- new_cc_data %>%
-select(last4ccnum,loyaltynum) %>%
-filter(loyaltynum>0) %>%
-group_by(last4ccnum,loyaltynum) %>%
-summarise(total_count = n()) %>%
-arrange(desc(total_count))
-
-duplicates_update <- cards_mapping %>%
-  group_by(last4ccnum) %>%
-  summarise(no_count=n())
-
-
+colnames(combine_cc_loyalty)[1] <- "timestamp"
 ```
 
 
-
-3. Create new data frame to show the summarized price and frequency for locations for both 
-credit card data and loyalty data to compare whether they can match.
-
-For credit card data:
-
-```{r}
-sum_cc_data <- cc_data %>%
-select(location, price) %>%
-group_by(location) %>%
-summarise(total_price = sum(price), total_count = n()) %>%
-arrange(desc(total_count), desc(total_price))
-
-glimpse(sum_cc_data)
-```
-For loyalty card data:
-
-```{r}
-sum_loyalty_data <- loyalty_data %>%
-select(location, price) %>%
-group_by(location) %>%
-summarise(total_price = sum(price), total_count = n()) %>%
-arrange(desc(total_count), desc(total_price))
-
-glimpse(sum_loyalty_data)
-```
-
-
-
-
-# 4. Proposed visualisation
+# 4. Data analysis and visualisation
 
 ### 4.1 Most popular location
 
-we identify the most popular location based on shopping frequency and the amount of money spent. Katerina’s Café is the place people go and visit most. Also, Abila Airport is the place people spent most.
+we identify the most popular locations based on shopping frequency and the amount of money spent. 
 
 ```{r}
 ggplot(sum_by_location, aes(x = location)) +
   geom_col(aes( y = total_count, fill="steelblue")) +
   geom_line(aes(y = total_price/500, group = 1, color = 'orange')) +
-  geom_point(aes(x=location, y=sum_by_location$total_price/500, color="orange"))+
+  geom_point(aes(x=location, y=total_price/500, color="orange"))+
   scale_y_continuous(name = "Frequency", sec.axis = sec_axis(trans = ~ .* 500,name = "Price")) +
   scale_fill_manual('', labels = 'Frequency', values = "steelblue") +
   scale_color_manual('', labels = 'Total Price', values = 'orange') +
   theme(axis.text.x = element_text(angle = 90),legend.position="bottom")
 ```
+
+
 ### 4.2 Most popular timeslot
 
 Based on the most popular location, we explore the most popular time people visit in 24 hours each day using heatmap graph, the darker the color is, the more popular the place is in this timeslot.
 
-So, for Katerina’s Café, most of people go there around 13pm to 15pm and 19pm to 21pm each day.
-
 ```{r}
-popular_time <- joint_cc_loyalty %>%
+popular_time <- combine_cc_loyalty %>%
   select(location,date,timestamp,price) %>%
-  filter(location == "Katerina’s Café"|location == "Abila Airport") 
+  filter(location == "Katerina’s Café"|location == "Guy's Gyros" |location == "Hippokampos"|location == "Brew've Been Served") 
 
 popular_time$hour <- hour(popular_time$timestamp)
 
@@ -229,40 +162,85 @@ geom_tile(color = 'white',size = 0.1) +
   theme(axis.text.x = element_text(angle = 90),legend.position="bottom")
 ```
 
+### 4.3 Anomalies about credit card and loyalty data
 
-
-for cc_data:
+1. As loyalty cards data is always generated from credit cards data, both the data should be same by right. However, the some transactions data in credit card dataset are not consistent with the data in loyalty dataset. There are 1490 and 1392 transactions in credit card dataset and loyalty dataset respectively. Also, just 1087 transactions can match based on the location, timestamp and price spent for each transaction.
 
 ```{r}
-ggplot(sum_cc_data, aes(x = location)) +
-  geom_col(aes( y = total_count, fill="steelblue")) +
-  geom_line(aes(y = total_price/500, group = 1, color = 'orange')) +
-  geom_point(aes(x=location, y=sum_cc_data$total_price/500, color="orange"))+
-  scale_y_continuous(name = "Frequency", sec.axis = sec_axis(trans = ~ .* 500,name = "Price")) +
-  scale_fill_manual('', labels = 'Frequency', values = "steelblue") +
-  scale_color_manual('', labels = 'Total Price', values = 'orange') +
-  theme(axis.text.x = element_text(angle = 90),legend.position="bottom")
+nrow(cc_data)
+nrow(loyalty_data)
+nrow(combine_cc_loyalty)
+
+```
+
+2. Brew've Been Served is one of the most popular locations people always went there around 7am to 8am on the weekdays. What's more, all the transactions were paid around 17 different credit cards. That means just 17 people always went there. It is less than other three popular locations which have 33 or 35 different visitors in the last two weeks. 
+
+```{r}
+visitor_frequency_for_location <- combine_cc_loyalty %>%
+  select(location,last4ccnum) %>%
+  filter(location == "Katerina’s Café"|location == "Guy's Gyros" |location == "Hippokampos"|location == "Brew've Been Served") %>%
+  group_by(location,last4ccnum) %>%
+  summarise(total_count = n())
+
+visitor_count_for_location <- visitor_frequency_for_location %>%
+  select(location) %>%
+  group_by(location) %>%
+  summarise(total_count =n())
+
 ```
 
 
-for loyalty_data:
+
+
+
+
+### 4.4 Recommandations for correcting anomalies
+
+The reason for the inconsistency might be that some people did not record transactions on loyalty card although they indeed purchase something using their credit card. For the same reason, some people recorded the purchase on their loyalty card but they did not pay that using given credit card.
+
+we merge the transactions exiting in loyalty card data but not exiting in the credit card data to the credit card data in order to make up the missing transactions in credit card data, then we can get a more comprehensive transaction data for purchases and preferences.
+
 ```{r}
-ggplot(sum_loyalty_data, aes(x = location)) +
-  geom_col(aes( y = total_count, fill="steelblue")) +
-  geom_line(aes(y = total_price/500, group = 1, color = 'orange')) +
-  geom_point(aes(x=location, y=sum_loyalty_data$total_price/500, color="orange"))+
-  scale_y_continuous(name = "Frequency", sec.axis = sec_axis(trans = ~ .* 500,name = "Price")) +
-  scale_fill_manual('', labels = 'Frequency', values = "steelblue") +
-  scale_color_manual('', labels = 'Total Price', values = 'orange') +
-  theme(axis.text.x = element_text(angle = 90),legend.position="bottom")
+new_cc_data <- merge(cc_data, combine_cc_loyalty,
+                              by=c('timestamp','location','price','last4ccnum'),all=TRUE)
+
+new_cc_data <- new_cc_data[-c(488,497,507,513,674,683),] %>%
+  select(timestamp,location, price,last4ccnum,date.x,loyaltynum)
+```
+
+### 4.5 Discrepancies between vehicle, credit, and loyalty card data 
+
+Add the vehicle data to the analysis of the credit and loyalty card data,
+
+
+
+
+3. Mapping the credit card and loyalty card data based on the transactions with same location, transaction timestamp and price.
+
+```{r}
+cards_mapping <- new_cc_data %>%
+select(last4ccnum,loyaltynum) %>%
+filter(loyaltynum>0) %>%
+group_by(last4ccnum,loyaltynum) %>%
+summarise(total_count = n()) %>%
+arrange(desc(total_count))
+
+cards_mapping_cc <- cards_mapping %>%
+  summarise(no_count=n())
 ```
 
 
 # 5. Insights
 
-### 5.1 Anomalies about credit card and loyalty data
+### 5.1 Most popular location and timeslot
 
-As loyalty cards data is always generated from credit cards data, both the data should be same by right. However, the some transactions data in credit card dataset are not consistent with the data in loyalty dataset. There are 1490 and 1392 transactions in credit card dataset and loyalty dataset respectively. Also, just 1087 transactions can match based on the location, timestamp and price spent for each transaction.
+Katerina’s Café is the place people go and visit most. Also, Abila Airport is the place people spent most.
+
+So, for Katerina’s Café, most of people go there around 13pm to 15pm and 19pm to 21pm each day.
+
+### 5.2 Anomalies and corrections for credit card and loyalty card data
+
+
 
 
 

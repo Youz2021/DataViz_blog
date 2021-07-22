@@ -117,7 +117,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["assignment_files/anchor-4.2.2/anchor.min.js","assignment_files/bowser-1.9.3/bowser.min.js","assignment_files/distill-2.2.21/template.v2.js","assignment_files/figure-html5/unnamed-chunk-10-1.png","assignment_files/figure-html5/unnamed-chunk-11-1.png","assignment_files/figure-html5/unnamed-chunk-12-1.png","assignment_files/figure-html5/unnamed-chunk-13-1.png","assignment_files/figure-html5/unnamed-chunk-7-1.png","assignment_files/figure-html5/unnamed-chunk-8-1.png","assignment_files/figure-html5/unnamed-chunk-9-1.png","assignment_files/header-attrs-2.8/header-attrs.js","assignment_files/jquery-1.11.3/jquery.min.js","assignment_files/pagedtable-1.1/css/pagedtable.css","assignment_files/pagedtable-1.1/js/pagedtable.js","assignment_files/popper-2.6.0/popper.min.js","assignment_files/tippy-6.2.7/tippy-bundle.umd.min.js","assignment_files/tippy-6.2.7/tippy-light-border.css","assignment_files/tippy-6.2.7/tippy.css","assignment_files/tippy-6.2.7/tippy.umd.min.js","assignment_files/webcomponents-2.0.0/webcomponents.js","img/location_most.jpg","MC2/~$2_data_readme.docx","MC2/AnswerSheet/VAST Challenge 2021 MC2 Answer Sheet.htm","MC2/AnswerSheet/VAST Challenge 2021 MC2 Answer Sheet_files/colorschememapping.xml","MC2/AnswerSheet/VAST Challenge 2021 MC2 Answer Sheet_files/filelist.xml","MC2/AnswerSheet/VAST Challenge 2021 MC2 Answer Sheet_files/themedata.thmx","MC2/car-assignments.csv","MC2/cc_data.csv","MC2/Geospatial/Abila.dbf","MC2/Geospatial/Abila.kml","MC2/Geospatial/Abila.prj","MC2/Geospatial/Abila.sbn","MC2/Geospatial/Abila.sbx","MC2/Geospatial/Abila.shp","MC2/Geospatial/Abila.shx","MC2/Geospatial/Kronos Island.kmz","MC2/Geospatial/Kronos_Island.dbf","MC2/Geospatial/Kronos_Island.prj","MC2/Geospatial/Kronos_Island.sbn","MC2/Geospatial/Kronos_Island.sbx","MC2/Geospatial/Kronos_Island.shp","MC2/Geospatial/Kronos_Island.shx","MC2/gps.csv","MC2/loyalty_data.csv","MC2/MC2-tourist.jpg","MC2/MC2_data_readme.docx"]}
+  {"type":"character","attributes":{},"value":["assignment_files/anchor-4.2.2/anchor.min.js","assignment_files/bowser-1.9.3/bowser.min.js","assignment_files/distill-2.2.21/template.v2.js","assignment_files/figure-html5/unnamed-chunk-10-1.png","assignment_files/figure-html5/unnamed-chunk-11-1.png","assignment_files/figure-html5/unnamed-chunk-12-1.png","assignment_files/figure-html5/unnamed-chunk-13-1.png","assignment_files/figure-html5/unnamed-chunk-5-1.png","assignment_files/figure-html5/unnamed-chunk-6-1.png","assignment_files/figure-html5/unnamed-chunk-7-1.png","assignment_files/figure-html5/unnamed-chunk-8-1.png","assignment_files/figure-html5/unnamed-chunk-9-1.png","assignment_files/header-attrs-2.8/header-attrs.js","assignment_files/jquery-1.11.3/jquery.min.js","assignment_files/pagedtable-1.1/css/pagedtable.css","assignment_files/pagedtable-1.1/js/pagedtable.js","assignment_files/popper-2.6.0/popper.min.js","assignment_files/tippy-6.2.7/tippy-bundle.umd.min.js","assignment_files/tippy-6.2.7/tippy-light-border.css","assignment_files/tippy-6.2.7/tippy.css","assignment_files/tippy-6.2.7/tippy.umd.min.js","assignment_files/webcomponents-2.0.0/webcomponents.js","img/compare.png","img/location_most.jpg","MC2/~$2_data_readme.docx","MC2/AnswerSheet/VAST Challenge 2021 MC2 Answer Sheet.htm","MC2/AnswerSheet/VAST Challenge 2021 MC2 Answer Sheet_files/colorschememapping.xml","MC2/AnswerSheet/VAST Challenge 2021 MC2 Answer Sheet_files/filelist.xml","MC2/AnswerSheet/VAST Challenge 2021 MC2 Answer Sheet_files/themedata.thmx","MC2/car-assignments.csv","MC2/cc_data.csv","MC2/Geospatial/Abila.dbf","MC2/Geospatial/Abila.kml","MC2/Geospatial/Abila.prj","MC2/Geospatial/Abila.sbn","MC2/Geospatial/Abila.sbx","MC2/Geospatial/Abila.shp","MC2/Geospatial/Abila.shx","MC2/Geospatial/Kronos Island.kmz","MC2/Geospatial/Kronos_Island.dbf","MC2/Geospatial/Kronos_Island.prj","MC2/Geospatial/Kronos_Island.sbn","MC2/Geospatial/Kronos_Island.sbx","MC2/Geospatial/Kronos_Island.shp","MC2/Geospatial/Kronos_Island.shx","MC2/gps.csv","MC2/loyalty_data.csv","MC2/MC2-tourist.jpg","MC2/MC2_data_readme.docx"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2114,14 +2114,18 @@ document.addEventListener('DOMContentLoaded', function() {
 <li><a href="#import-data">3.2 Import data</a></li>
 <li><a href="#data-processing">3.3 Data processing</a></li>
 </ul></li>
-<li><a href="#proposed-visualisation">4. Proposed visualisation</a>
+<li><a href="#data-analysis-and-visualisation">4. Data analysis and visualisation</a>
 <ul>
 <li><a href="#most-popular-location">4.1 Most popular location</a></li>
 <li><a href="#most-popular-timeslot">4.2 Most popular timeslot</a></li>
+<li><a href="#anomalies-about-credit-card-and-loyalty-data">4.3 Anomalies about credit card and loyalty data</a></li>
+<li><a href="#recommandations-for-correcting-anomalies">4.4 Recommandations for correcting anomalies</a></li>
+<li><a href="#discrepancies-between-vehicle-credit-and-loyalty-card-data">4.5 Discrepancies between vehicle, credit, and loyalty card data</a></li>
 </ul></li>
 <li><a href="#insights">5. Insights</a>
 <ul>
-<li><a href="#anomalies-about-credit-card-and-loyalty-data">5.1 Anomalies about credit card and loyalty data</a></li>
+<li><a href="#most-popular-location-and-timeslot">5.1 Most popular location and timeslot</a></li>
+<li><a href="#anomalies-and-corrections-for-credit-card-and-loyalty-card-data">5.2 Anomalies and corrections for credit card and loyalty card data</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -2173,7 +2177,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 <h3 id="data-processing">3.3 Data processing</h3>
 <ol type="1">
-<li>Change variables to the proper data type and create new variables for further analysis. Then show the dataframe to view.</li>
+<li>Change variables to the proper data type and create new variables for further analysis.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2185,154 +2189,52 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <span class='va'>cc_data</span><span class='op'>$</span><span class='va'>date</span> <span class='op'>&lt;-</span> <span class='fu'>date_parse</span><span class='op'>(</span><span class='va'>cc_data</span><span class='op'>$</span><span class='va'>date</span>,format <span class='op'>=</span> <span class='st'>"%Y-%m-%d"</span><span class='op'>)</span>
 
-
 <span class='va'>loyalty_data</span><span class='op'>$</span><span class='va'>date</span> <span class='op'>&lt;-</span> <span class='fu'>date_parse</span><span class='op'>(</span><span class='va'>loyalty_data</span><span class='op'>$</span><span class='va'>timestamp</span>,
                                 format <span class='op'>=</span> <span class='st'>"%m/%d/%Y"</span><span class='op'>)</span>
-
-<span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>cc_data</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>Rows: 1,490
-Columns: 5
-$ timestamp  &lt;dttm&gt; 2014-01-06 07:28:00, 2014-01-06 07:34:00, 2014-0~
-$ location   &lt;chr&gt; &quot;Brew&#39;ve Been Served&quot;, &quot;Hallowed Grounds&quot;, &quot;Brew&#39;~
-$ price      &lt;dbl&gt; 11.34, 52.22, 8.33, 16.72, 4.24, 4.17, 28.73, 9.6~
-$ last4ccnum &lt;int&gt; 4795, 7108, 6816, 9617, 7384, 5368, 7253, 4948, 9~
-$ date       &lt;date&gt; 2014-01-06, 2014-01-06, 2014-01-06, 2014-01-06, ~</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>loyalty_data</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>Rows: 1,392
-Columns: 5
-$ timestamp  &lt;chr&gt; &quot;01/06/2014&quot;, &quot;01/06/2014&quot;, &quot;01/06/2014&quot;, &quot;01/06/~
-$ location   &lt;chr&gt; &quot;Brew&#39;ve Been Served&quot;, &quot;Brew&#39;ve Been Served&quot;, &quot;Ha~
-$ price      &lt;dbl&gt; 4.17, 9.60, 16.53, 11.51, 12.93, 4.27, 11.20, 15.~
-$ loyaltynum &lt;chr&gt; &quot;L2247&quot;, &quot;L9406&quot;, &quot;L8328&quot;, &quot;L6417&quot;, &quot;L1107&quot;, &quot;L40~
-$ date       &lt;date&gt; 2014-01-06, 2014-01-06, 2014-01-06, 2014-01-06, ~</code></pre>
 </div>
 <ol start="2" type="1">
-<li>Merge credit card data and loyalty card data into a new data frame to make up the missing transactions in credit card data since the data in credit card data is inconsistent with the data in loyalty card data.</li>
+<li>Combine credit card data and loyalty card data into a new data frame based on the same location, timestamp and price in order to identify the most popular place and the most popular timeslot. Also, rename the columns for the new data frame.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>joint_cc_loyalty</span> <span class='op'>=</span> <span class='va'>cc_data</span> <span class='op'>%&gt;%</span> <span class='fu'>inner_join</span><span class='op'>(</span><span class='va'>loyalty_data</span>,
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>combine_cc_loyalty</span> <span class='op'>=</span> <span class='va'>cc_data</span> <span class='op'>%&gt;%</span> <span class='fu'>inner_join</span><span class='op'>(</span><span class='va'>loyalty_data</span>,
                                           by<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'location'</span>,<span class='st'>'price'</span>,<span class='st'>'date'</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>sum_by_location</span> <span class='op'>&lt;-</span> <span class='va'>joint_cc_loyalty</span> <span class='op'>%&gt;%</span>
+<span class='va'>sum_by_location</span> <span class='op'>&lt;-</span> <span class='va'>combine_cc_loyalty</span> <span class='op'>%&gt;%</span>
 <span class='fu'>select</span><span class='op'>(</span><span class='va'>location</span>, <span class='va'>price</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
 <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>location</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
 <span class='fu'>summarise</span><span class='op'>(</span>total_price <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>price</span><span class='op'>)</span>, total_count <span class='op'>=</span> <span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
 <span class='fu'>arrange</span><span class='op'>(</span><span class='fu'>desc</span><span class='op'>(</span><span class='va'>total_count</span><span class='op'>)</span>, <span class='fu'>desc</span><span class='op'>(</span><span class='va'>total_price</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>joint_cc_loyalty</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"timestamp"</span>
-
-<span class='va'>new_cc_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/merge.html'>merge</a></span><span class='op'>(</span><span class='va'>cc_data</span>, <span class='va'>joint_cc_loyalty</span>,
-                              by<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'timestamp'</span>,<span class='st'>'location'</span>,<span class='st'>'price'</span>,<span class='st'>'last4ccnum'</span><span class='op'>)</span>,all<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
-          
-<span class='va'>new_loyalty_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/merge.html'>merge</a></span><span class='op'>(</span><span class='va'>loyalty_data</span>, <span class='va'>joint_cc_loyalty</span>,
-                          by.x<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'timestamp'</span>,<span class='st'>'location'</span>,<span class='st'>'price'</span>,<span class='st'>'loyaltynum'</span><span class='op'>)</span>,
-                          by.y <span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'timestamp.y'</span>,<span class='st'>'location'</span>,<span class='st'>'price'</span>,<span class='st'>'loyaltynum'</span><span class='op'>)</span>,
-                          all<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
-
-<span class='va'>new_cc_data</span> <span class='op'>&lt;-</span><span class='va'>new_cc_data</span><span class='op'>[</span><span class='op'>!</span><span class='op'>(</span><span class='op'>(</span><span class='va'>new_cc_data</span><span class='op'>$</span><span class='va'>last4ccnum</span> <span class='op'>==</span><span class='st'>"4795"</span> <span class='op'>&amp;</span> <span class='va'>new_cc_data</span><span class='op'>$</span><span class='va'>loyaltynum</span> <span class='op'>==</span><span class='st'>"L2070"</span><span class='op'>)</span> <span class='op'>|</span> <span class='op'>(</span><span class='va'>new_cc_data</span><span class='op'>$</span><span class='va'>last4ccnum</span> <span class='op'>==</span><span class='st'>"4948"</span> <span class='op'>&amp;</span> <span class='va'>new_cc_data</span><span class='op'>$</span><span class='va'>loyaltynum</span> <span class='op'>==</span><span class='st'>"L3295"</span><span class='op'>)</span> <span class='op'>|</span> <span class='op'>(</span><span class='va'>new_cc_data</span><span class='op'>$</span><span class='va'>last4ccnum</span> <span class='op'>==</span><span class='st'>"5368"</span> <span class='op'>&amp;</span> <span class='va'>new_cc_data</span><span class='op'>$</span><span class='va'>loyaltynum</span> <span class='op'>==</span><span class='st'>"L6119"</span><span class='op'>)</span> <span class='op'>|</span> <span class='op'>(</span><span class='va'>new_cc_data</span><span class='op'>$</span><span class='va'>last4ccnum</span> <span class='op'>==</span><span class='st'>"5921"</span> <span class='op'>&amp;</span> <span class='va'>new_cc_data</span><span class='op'>$</span><span class='va'>loyaltynum</span> <span class='op'>==</span><span class='st'>"L2247"</span><span class='op'>)</span> <span class='op'>|</span> <span class='op'>(</span><span class='va'>new_cc_data</span><span class='op'>$</span><span class='va'>last4ccnum</span> <span class='op'>==</span><span class='st'>"8332"</span> <span class='op'>&amp;</span> <span class='va'>new_cc_data</span><span class='op'>$</span><span class='va'>loyaltynum</span> <span class='op'>==</span><span class='st'>"L8566"</span><span class='op'>)</span> <span class='op'>|</span>
-<span class='op'>(</span><span class='va'>new_cc_data</span><span class='op'>$</span><span class='va'>last4ccnum</span> <span class='op'>==</span><span class='st'>"7889"</span> <span class='op'>&amp;</span> <span class='va'>new_cc_data</span><span class='op'>$</span><span class='va'>loyaltynum</span> <span class='op'>==</span><span class='st'>"L2247"</span><span class='op'>)</span><span class='op'>)</span>,<span class='op'>]</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>select</span><span class='op'>(</span><span class='va'>timestamp</span>,<span class='va'>location</span>, <span class='va'>price</span>,<span class='va'>last4ccnum</span>,<span class='va'>date.x</span>,<span class='va'>loyaltynum</span><span class='op'>)</span>
-
-
-<span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>new_cc_data</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>Rows: 1,491
-Columns: 6
-$ timestamp  &lt;dttm&gt; 2014-01-06 07:28:00, 2014-01-06 07:34:00, 2014-0~
-$ location   &lt;chr&gt; &quot;Brew&#39;ve Been Served&quot;, &quot;Hallowed Grounds&quot;, &quot;Brew&#39;~
-$ price      &lt;dbl&gt; 11.34, 52.22, 8.33, 16.72, 4.24, 4.17, 28.73, 9.6~
-$ last4ccnum &lt;int&gt; 4795, 7108, 6816, 9617, 7384, 5368, 7253, 4948, 9~
-$ date.x     &lt;date&gt; 2014-01-06, 2014-01-06, 2014-01-06, 2014-01-06, ~
-$ loyaltynum &lt;chr&gt; &quot;L8566&quot;, NA, &quot;L8148&quot;, &quot;L5553&quot;, &quot;L3800&quot;, &quot;L2247&quot;, ~</code></pre>
-</div>
-<ol start="3" type="1">
-<li>Mapping the credit card and loyalty card based on the transactions with same location, transaction timestamp and price.</li>
-</ol>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cards_mapping</span> <span class='op'>&lt;-</span> <span class='va'>new_cc_data</span> <span class='op'>%&gt;%</span>
-<span class='fu'>select</span><span class='op'>(</span><span class='va'>last4ccnum</span>,<span class='va'>loyaltynum</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>loyaltynum</span><span class='op'>&gt;</span><span class='fl'>0</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-<span class='fu'>group_by</span><span class='op'>(</span><span class='va'>last4ccnum</span>,<span class='va'>loyaltynum</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-<span class='fu'>summarise</span><span class='op'>(</span>total_count <span class='op'>=</span> <span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-<span class='fu'>arrange</span><span class='op'>(</span><span class='fu'>desc</span><span class='op'>(</span><span class='va'>total_count</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='va'>duplicates_update</span> <span class='op'>&lt;-</span> <span class='va'>cards_mapping</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>last4ccnum</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>summarise</span><span class='op'>(</span>no_count<span class='op'>=</span><span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>combine_cc_loyalty</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"timestamp"</span>
 </code></pre>
 </div>
 </div>
-<ol start="3" type="1">
-<li>Create new data frame to show the summarized price and frequency for locations for both credit card data and loyalty data to compare whether they can match.</li>
-</ol>
-<p>For credit card data:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sum_cc_data</span> <span class='op'>&lt;-</span> <span class='va'>cc_data</span> <span class='op'>%&gt;%</span>
-<span class='fu'>select</span><span class='op'>(</span><span class='va'>location</span>, <span class='va'>price</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-<span class='fu'>group_by</span><span class='op'>(</span><span class='va'>location</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-<span class='fu'>summarise</span><span class='op'>(</span>total_price <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>price</span><span class='op'>)</span>, total_count <span class='op'>=</span> <span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-<span class='fu'>arrange</span><span class='op'>(</span><span class='fu'>desc</span><span class='op'>(</span><span class='va'>total_count</span><span class='op'>)</span>, <span class='fu'>desc</span><span class='op'>(</span><span class='va'>total_price</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>sum_cc_data</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>Rows: 34
-Columns: 3
-$ location    &lt;chr&gt; &quot;Katerina’s Café&quot;, &quot;Hippokampos&quot;, &quot;Guy&#39;s Gyros&quot;,~
-$ total_price &lt;dbl&gt; 7286.37, 6675.90, 5346.25, 3124.04, 1848.28, 320~
-$ total_count &lt;int&gt; 212, 171, 158, 156, 92, 87, 72, 64, 64, 47, 47, ~</code></pre>
-</div>
-<p>For loyalty card data:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sum_loyalty_data</span> <span class='op'>&lt;-</span> <span class='va'>loyalty_data</span> <span class='op'>%&gt;%</span>
-<span class='fu'>select</span><span class='op'>(</span><span class='va'>location</span>, <span class='va'>price</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-<span class='fu'>group_by</span><span class='op'>(</span><span class='va'>location</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-<span class='fu'>summarise</span><span class='op'>(</span>total_price <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>price</span><span class='op'>)</span>, total_count <span class='op'>=</span> <span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-<span class='fu'>arrange</span><span class='op'>(</span><span class='fu'>desc</span><span class='op'>(</span><span class='va'>total_count</span><span class='op'>)</span>, <span class='fu'>desc</span><span class='op'>(</span><span class='va'>total_price</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>sum_loyalty_data</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>Rows: 33
-Columns: 3
-$ location    &lt;chr&gt; &quot;Katerina’s Café&quot;, &quot;Hippokampos&quot;, &quot;Guy&#39;s Gyros&quot;,~
-$ total_price &lt;dbl&gt; 5405.31, 4533.18, 3808.07, 1519.56, 2451.08, 961~
-$ total_count &lt;int&gt; 195, 155, 146, 140, 84, 80, 71, 66, 60, 45, 42, ~</code></pre>
-</div>
-<h1 id="proposed-visualisation">4. Proposed visualisation</h1>
+<h1 id="data-analysis-and-visualisation">4. Data analysis and visualisation</h1>
 <h3 id="most-popular-location">4.1 Most popular location</h3>
-<p>we identify the most popular location based on shopping frequency and the amount of money spent. Katerina’s Café is the place people go and visit most. Also, Abila Airport is the place people spent most.</p>
+<p>we identify the most popular locations based on shopping frequency and the amount of money spent.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span><span class='va'>sum_by_location</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>location</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>geom_col</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span> y <span class='op'>=</span> <span class='va'>total_count</span>, fill<span class='op'>=</span><span class='st'>"steelblue"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>geom_line</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>total_price</span><span class='op'>/</span><span class='fl'>500</span>, group <span class='op'>=</span> <span class='fl'>1</span>, color <span class='op'>=</span> <span class='st'>'orange'</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_point</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>location</span>, y<span class='op'>=</span><span class='va'>sum_by_location</span><span class='op'>$</span><span class='va'>total_price</span><span class='op'>/</span><span class='fl'>500</span>, color<span class='op'>=</span><span class='st'>"orange"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_point</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>location</span>, y<span class='op'>=</span><span class='va'>total_price</span><span class='op'>/</span><span class='fl'>500</span>, color<span class='op'>=</span><span class='st'>"orange"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span>
   <span class='fu'>scale_y_continuous</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"Frequency"</span>, sec.axis <span class='op'>=</span> <span class='fu'>sec_axis</span><span class='op'>(</span>trans <span class='op'>=</span> <span class='op'>~</span> <span class='va'>.</span><span class='op'>*</span> <span class='fl'>500</span>,name <span class='op'>=</span> <span class='st'>"Price"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>scale_fill_manual</span><span class='op'>(</span><span class='st'>''</span>, labels <span class='op'>=</span> <span class='st'>'Frequency'</span>, values <span class='op'>=</span> <span class='st'>"steelblue"</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>scale_color_manual</span><span class='op'>(</span><span class='st'>''</span>, labels <span class='op'>=</span> <span class='st'>'Total Price'</span>, values <span class='op'>=</span> <span class='st'>'orange'</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>theme</span><span class='op'>(</span>axis.text.x <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>angle <span class='op'>=</span> <span class='fl'>90</span><span class='op'>)</span>,legend.position<span class='op'>=</span><span class='st'>"bottom"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="assignment_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
+<p><img src="assignment_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
 </div>
 <h3 id="most-popular-timeslot">4.2 Most popular timeslot</h3>
 <p>Based on the most popular location, we explore the most popular time people visit in 24 hours each day using heatmap graph, the darker the color is, the more popular the place is in this timeslot.</p>
-<p>So, for Katerina’s Café, most of people go there around 13pm to 15pm and 19pm to 21pm each day.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>popular_time</span> <span class='op'>&lt;-</span> <span class='va'>joint_cc_loyalty</span> <span class='op'>%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>popular_time</span> <span class='op'>&lt;-</span> <span class='va'>combine_cc_loyalty</span> <span class='op'>%&gt;%</span>
   <span class='fu'>select</span><span class='op'>(</span><span class='va'>location</span>,<span class='va'>date</span>,<span class='va'>timestamp</span>,<span class='va'>price</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>location</span> <span class='op'>==</span> <span class='st'>"Katerina’s Café"</span><span class='op'>|</span><span class='va'>location</span> <span class='op'>==</span> <span class='st'>"Abila Airport"</span><span class='op'>)</span> 
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>location</span> <span class='op'>==</span> <span class='st'>"Katerina’s Café"</span><span class='op'>|</span><span class='va'>location</span> <span class='op'>==</span> <span class='st'>"Guy's Gyros"</span> <span class='op'>|</span><span class='va'>location</span> <span class='op'>==</span> <span class='st'>"Hippokampos"</span><span class='op'>|</span><span class='va'>location</span> <span class='op'>==</span> <span class='st'>"Brew've Been Served"</span><span class='op'>)</span> 
 
 <span class='va'>popular_time</span><span class='op'>$</span><span class='va'>hour</span> <span class='op'>&lt;-</span> <span class='fu'>hour</span><span class='op'>(</span><span class='va'>popular_time</span><span class='op'>$</span><span class='va'>timestamp</span><span class='op'>)</span>
 
@@ -2356,42 +2258,85 @@ $ total_count &lt;int&gt; 195, 155, 146, 140, 84, 80, 71, 66, 60, 45, 42, ~</cod
   <span class='fu'>theme</span><span class='op'>(</span>axis.text.x <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>angle <span class='op'>=</span> <span class='fl'>90</span><span class='op'>)</span>,legend.position<span class='op'>=</span><span class='st'>"bottom"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="assignment_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
+<p><img src="assignment_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
 </div>
-<p>for cc_data:</p>
+<h3 id="anomalies-about-credit-card-and-loyalty-data">4.3 Anomalies about credit card and loyalty data</h3>
+<ol type="1">
+<li>As loyalty cards data is always generated from credit cards data, both the data should be same by right. However, the some transactions data in credit card dataset are not consistent with the data in loyalty dataset. There are 1490 and 1392 transactions in credit card dataset and loyalty dataset respectively. Also, just 1087 transactions can match based on the location, timestamp and price spent for each transaction.</li>
+</ol>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span><span class='va'>sum_cc_data</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>location</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_col</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span> y <span class='op'>=</span> <span class='va'>total_count</span>, fill<span class='op'>=</span><span class='st'>"steelblue"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_line</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>total_price</span><span class='op'>/</span><span class='fl'>500</span>, group <span class='op'>=</span> <span class='fl'>1</span>, color <span class='op'>=</span> <span class='st'>'orange'</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_point</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>location</span>, y<span class='op'>=</span><span class='va'>sum_cc_data</span><span class='op'>$</span><span class='va'>total_price</span><span class='op'>/</span><span class='fl'>500</span>, color<span class='op'>=</span><span class='st'>"orange"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'>scale_y_continuous</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"Frequency"</span>, sec.axis <span class='op'>=</span> <span class='fu'>sec_axis</span><span class='op'>(</span>trans <span class='op'>=</span> <span class='op'>~</span> <span class='va'>.</span><span class='op'>*</span> <span class='fl'>500</span>,name <span class='op'>=</span> <span class='st'>"Price"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>scale_fill_manual</span><span class='op'>(</span><span class='st'>''</span>, labels <span class='op'>=</span> <span class='st'>'Frequency'</span>, values <span class='op'>=</span> <span class='st'>"steelblue"</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>scale_color_manual</span><span class='op'>(</span><span class='st'>''</span>, labels <span class='op'>=</span> <span class='st'>'Total Price'</span>, values <span class='op'>=</span> <span class='st'>'orange'</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>theme</span><span class='op'>(</span>axis.text.x <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>angle <span class='op'>=</span> <span class='fl'>90</span><span class='op'>)</span>,legend.position<span class='op'>=</span><span class='st'>"bottom"</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>cc_data</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="assignment_files/figure-html5/unnamed-chunk-10-1.png" width="624" /></p>
+<pre><code>[1] 1490</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>loyalty_data</span><span class='op'>)</span>
+</code></pre>
 </div>
-for loyalty_data:
+<pre><code>[1] 1392</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>combine_cc_loyalty</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 1087</code></pre>
+</div>
+<ol start="2" type="1">
+<li>Brew’ve Been Served is one of the most popular locations people always went there around 7am to 8am on the weekdays. What’s more, all the transactions were paid around 17 different credit cards. That means just 17 people always went there. It is less than other three popular locations which have 33 or 35 different visitors in the last two weeks.</li>
+</ol>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span><span class='va'>sum_loyalty_data</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>location</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_col</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span> y <span class='op'>=</span> <span class='va'>total_count</span>, fill<span class='op'>=</span><span class='st'>"steelblue"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_line</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>total_price</span><span class='op'>/</span><span class='fl'>500</span>, group <span class='op'>=</span> <span class='fl'>1</span>, color <span class='op'>=</span> <span class='st'>'orange'</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_point</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>location</span>, y<span class='op'>=</span><span class='va'>sum_loyalty_data</span><span class='op'>$</span><span class='va'>total_price</span><span class='op'>/</span><span class='fl'>500</span>, color<span class='op'>=</span><span class='st'>"orange"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'>scale_y_continuous</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"Frequency"</span>, sec.axis <span class='op'>=</span> <span class='fu'>sec_axis</span><span class='op'>(</span>trans <span class='op'>=</span> <span class='op'>~</span> <span class='va'>.</span><span class='op'>*</span> <span class='fl'>500</span>,name <span class='op'>=</span> <span class='st'>"Price"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>scale_fill_manual</span><span class='op'>(</span><span class='st'>''</span>, labels <span class='op'>=</span> <span class='st'>'Frequency'</span>, values <span class='op'>=</span> <span class='st'>"steelblue"</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>scale_color_manual</span><span class='op'>(</span><span class='st'>''</span>, labels <span class='op'>=</span> <span class='st'>'Total Price'</span>, values <span class='op'>=</span> <span class='st'>'orange'</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>theme</span><span class='op'>(</span>axis.text.x <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>angle <span class='op'>=</span> <span class='fl'>90</span><span class='op'>)</span>,legend.position<span class='op'>=</span><span class='st'>"bottom"</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>visitor_frequency_for_location</span> <span class='op'>&lt;-</span> <span class='va'>combine_cc_loyalty</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>select</span><span class='op'>(</span><span class='va'>location</span>,<span class='va'>last4ccnum</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>location</span> <span class='op'>==</span> <span class='st'>"Katerina’s Café"</span><span class='op'>|</span><span class='va'>location</span> <span class='op'>==</span> <span class='st'>"Guy's Gyros"</span> <span class='op'>|</span><span class='va'>location</span> <span class='op'>==</span> <span class='st'>"Hippokampos"</span><span class='op'>|</span><span class='va'>location</span> <span class='op'>==</span> <span class='st'>"Brew've Been Served"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>location</span>,<span class='va'>last4ccnum</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>summarise</span><span class='op'>(</span>total_count <span class='op'>=</span> <span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>visitor_count_for_location</span> <span class='op'>&lt;-</span> <span class='va'>visitor_frequency_for_location</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>select</span><span class='op'>(</span><span class='va'>location</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>location</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>summarise</span><span class='op'>(</span>total_count <span class='op'>=</span><span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="assignment_files/figure-html5/unnamed-chunk-11-1.png" width="624" /></p>
+</div>
+<h3 id="recommandations-for-correcting-anomalies">4.4 Recommandations for correcting anomalies</h3>
+<p>The reason for the inconsistency might be that some people did not record transactions on loyalty card although they indeed purchase something using their credit card. For the same reason, some people recorded the purchase on their loyalty card but they did not pay that using given credit card.</p>
+<p>we merge the transactions exiting in loyalty card data but not exiting in the credit card data to the credit card data in order to make up the missing transactions in credit card data, then we can get a more comprehensive transaction data for purchases and preferences.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>new_cc_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/merge.html'>merge</a></span><span class='op'>(</span><span class='va'>cc_data</span>, <span class='va'>combine_cc_loyalty</span>,
+                              by<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'timestamp'</span>,<span class='st'>'location'</span>,<span class='st'>'price'</span>,<span class='st'>'last4ccnum'</span><span class='op'>)</span>,all<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='va'>new_cc_data</span> <span class='op'>&lt;-</span> <span class='va'>new_cc_data</span><span class='op'>[</span><span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>488</span>,<span class='fl'>497</span>,<span class='fl'>507</span>,<span class='fl'>513</span>,<span class='fl'>674</span>,<span class='fl'>683</span><span class='op'>)</span>,<span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>select</span><span class='op'>(</span><span class='va'>timestamp</span>,<span class='va'>location</span>, <span class='va'>price</span>,<span class='va'>last4ccnum</span>,<span class='va'>date.x</span>,<span class='va'>loyaltynum</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h3 id="discrepancies-between-vehicle-credit-and-loyalty-card-data">4.5 Discrepancies between vehicle, credit, and loyalty card data</h3>
+<p>Add the vehicle data to the analysis of the credit and loyalty card data,</p>
+<ol start="3" type="1">
+<li>Mapping the credit card and loyalty card data based on the transactions with same location, transaction timestamp and price.</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cards_mapping</span> <span class='op'>&lt;-</span> <span class='va'>new_cc_data</span> <span class='op'>%&gt;%</span>
+<span class='fu'>select</span><span class='op'>(</span><span class='va'>last4ccnum</span>,<span class='va'>loyaltynum</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>loyaltynum</span><span class='op'>&gt;</span><span class='fl'>0</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='fu'>group_by</span><span class='op'>(</span><span class='va'>last4ccnum</span>,<span class='va'>loyaltynum</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='fu'>summarise</span><span class='op'>(</span>total_count <span class='op'>=</span> <span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='fu'>arrange</span><span class='op'>(</span><span class='fu'>desc</span><span class='op'>(</span><span class='va'>total_count</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>cards_mapping_cc</span> <span class='op'>&lt;-</span> <span class='va'>cards_mapping</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>summarise</span><span class='op'>(</span>no_count<span class='op'>=</span><span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
 </div>
 <h1 id="insights">5. Insights</h1>
-<h3 id="anomalies-about-credit-card-and-loyalty-data">5.1 Anomalies about credit card and loyalty data</h3>
-<p>As loyalty cards data is always generated from credit cards data, both the data should be same by right. However, the some transactions data in credit card dataset are not consistent with the data in loyalty dataset. There are 1490 and 1392 transactions in credit card dataset and loyalty dataset respectively. Also, just 1087 transactions can match based on the location, timestamp and price spent for each transaction.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h3 id="most-popular-location-and-timeslot">5.1 Most popular location and timeslot</h3>
+<p>Katerina’s Café is the place people go and visit most. Also, Abila Airport is the place people spent most.</p>
+<p>So, for Katerina’s Café, most of people go there around 13pm to 15pm and 19pm to 21pm each day.</p>
+<h3 id="anomalies-and-corrections-for-credit-card-and-loyalty-card-data">5.2 Anomalies and corrections for credit card and loyalty card data</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
