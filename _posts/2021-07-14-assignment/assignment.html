@@ -1507,6 +1507,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <ul>
 <li><a href="#most-popular-location-and-timeslot">5.1 Most popular location and timeslot</a></li>
 <li><a href="#anomalies-and-corrections-for-credit-card-and-loyalty-card-data">5.2 Anomalies and corrections for credit card and loyalty card data</a></li>
+<li><a href="#section">5.3</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -1677,8 +1678,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <span class='fu'>gather</span><span class='op'>(</span><span class='va'>count_credit_cards</span>, <span class='va'>total_count</span>, key <span class='op'>=</span> <span class='st'>"key"</span>, value <span class='op'>=</span> <span class='st'>"value"</span><span class='op'>)</span>
 
 <span class='fu'>ggplot</span><span class='op'>(</span><span class='va'>visitor_count_for_location</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>location</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_col</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span> y <span class='op'>=</span> <span class='va'>value</span>, fill<span class='op'>=</span><span class='va'>key</span><span class='op'>)</span>,position <span class='op'>=</span> <span class='st'>"dodge"</span>,width <span class='op'>=</span> <span class='fl'>.5</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_text</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>value</span>, label<span class='op'>=</span> <span class='va'>value</span><span class='op'>)</span>,vjust <span class='op'>=</span><span class='fl'>0</span><span class='op'>)</span>
+  <span class='fu'>geom_col</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span> y <span class='op'>=</span> <span class='va'>value</span>, fill<span class='op'>=</span><span class='va'>key</span><span class='op'>)</span>,position <span class='op'>=</span> <span class='st'>"dodge"</span>,width <span class='op'>=</span> <span class='fl'>.5</span><span class='op'>)</span>
 </code></pre>
 </div>
 <p><img src="assignment_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
@@ -1709,15 +1709,29 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <span class='va'>new_cc_data</span> <span class='op'>&lt;-</span> <span class='va'>new_cc_data</span><span class='op'>[</span><span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>488</span>,<span class='fl'>497</span>,<span class='fl'>507</span>,<span class='fl'>513</span>,<span class='fl'>674</span>,<span class='fl'>683</span><span class='op'>)</span>,<span class='op'>]</span> <span class='op'>%&gt;%</span>
   <span class='fu'>select</span><span class='op'>(</span><span class='va'>timestamp</span>,<span class='va'>location</span>, <span class='va'>price</span>,<span class='va'>last4ccnum</span>,<span class='va'>date.x</span>,<span class='va'>loyaltynum</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>new_cc_data</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>5</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"date"</span>
+
+<span class='va'>new_loyalty_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/merge.html'>merge</a></span><span class='op'>(</span><span class='va'>loyalty_data</span>, <span class='va'>combine_cc_loyalty</span>,
+                              by<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'date'</span>,<span class='st'>'location'</span>,<span class='st'>'price'</span>,<span class='st'>'loyaltynum'</span><span class='op'>)</span>,all<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='va'>new_loyalty_data</span> <span class='op'>&lt;-</span> <span class='va'>new_loyalty_data</span><span class='op'>[</span><span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>610</span>,<span class='fl'>412</span>,<span class='fl'>465</span>,<span class='fl'>415</span>,<span class='fl'>612</span>,<span class='fl'>468</span><span class='op'>)</span>,<span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>select</span><span class='op'>(</span><span class='va'>date</span>,<span class='va'>location</span>, <span class='va'>price</span>,<span class='va'>last4ccnum</span>,<span class='va'>loyaltynum</span><span class='op'>)</span>
+
+<span class='va'>new_cc_loyalty_data</span> <span class='op'>&lt;-</span>  <span class='fu'><a href='https://rdrr.io/r/base/sets.html'>union</a></span><span class='op'>(</span><span class='fu'>left_join</span><span class='op'>(</span><span class='va'>new_cc_data</span>, <span class='va'>new_loyalty_data</span><span class='op'>)</span>,
+                              <span class='fu'>right_join</span><span class='op'>(</span><span class='va'>new_cc_data</span>, <span class='va'>new_loyalty_data</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>new_cc_loyalty_data</span><span class='op'>)</span>
 </code></pre>
 </div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>new_cc_data</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>[1] 1490</code></pre>
+<pre><code>Rows: 1,801
+Columns: 6
+$ timestamp  &lt;dttm&gt; 2014-01-06 07:28:00, 2014-01-06 07:34:00, 2014-0~
+$ location   &lt;chr&gt; &quot;Brew&#39;ve Been Served&quot;, &quot;Hallowed Grounds&quot;, &quot;Brew&#39;~
+$ price      &lt;dbl&gt; 11.34, 52.22, 8.33, 16.72, 4.24, 4.17, 28.73, 9.6~
+$ last4ccnum &lt;int&gt; 4795, 7108, 6816, 9617, 7384, 5368, 7253, 4948, 9~
+$ date       &lt;date&gt; 2014-01-06, 2014-01-06, 2014-01-06, 2014-01-06, ~
+$ loyaltynum &lt;chr&gt; &quot;L8566&quot;, NA, &quot;L8148&quot;, &quot;L5553&quot;, &quot;L3800&quot;, &quot;L2247&quot;, ~</code></pre>
 </div>
 <h3 id="discrepancies-between-vehicle-credit-and-loyalty-card-data">4.5 Discrepancies between vehicle, credit, and loyalty card data</h3>
 <p>Add the vehicle data to the analysis of the credit and loyalty card data,</p>
@@ -1752,15 +1766,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li>Transactions of credit card are inconsistent with loyalty cards’.</li>
 </ol>
 <p>As loyalty cards data is always generated from credit cards data, both the data should be same by right. However, the some transactions data in credit card dataset are not consistent with the data in loyalty dataset. There are 1490 and 1392 transactions in credit card dataset and loyalty dataset respectively. Also, just 1087 transactions can match based on the location, timestamp and price spent for each transaction.</p>
-<p><img src="img/inconsistent.png" />{width =15%}</p>
 <p>To correct this issue, we can merge the transactions exiting in loyalty card data but not exiting in the credit card data to the credit card data in order to make up the missing transactions in credit card data, then we can get a more comprehensive transaction data for purchases and preferences. Because the reason for the inconsistency might be that some employees did not record transactions on loyalty card although they indeed purchase something using their credit card. For the same reason, some employees recorded the purchase on their loyalty card but they did not pay that using given credit card.</p>
-<p><img src="img/inconsistent_resolve.png" />{width =15%}</p>
+<p><img src="img/inconsistent_resolve.png" style="width:20.0%" /></p>
 <ol start="2" type="1">
+<li>There are just 17 credit cards which were used frequently at Brew’ve Been Served on weekdays around 7am to 9am, far less than that of other three popular locations.</li>
+</ol>
+<p><img src="img/compare_card_frequency.png" style="width:60.0%" /></p>
+<p>For Brew’ve Been Served anomaly, we can follow up the employees who owned these credit cards to identify their relationships.</p>
+<ol start="3" type="1">
 <li>Most popular locations are different with the locations with higher purchase amount.</li>
 </ol>
 <p>Although employees always went Katerina’s Café, Guy’s Gyros, Hippokampos and Brew’ve Been Served, they did not spend too much money there. On the contrary, employees spent more at Abila Airport, Nationwide Refinery, Carlyle Chemical Inc. and Stewart and Sons Fabrication even though they did not purchase there frequently.</p>
 <p><img src="img/frequency_price.png" style="width:90.0%" /></p>
 <p>For this issue, we can category the location to explore the transactions produced by different business. Because the price of a order may vary from business to business.</p>
+<h3 id="section">5.3</h3>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

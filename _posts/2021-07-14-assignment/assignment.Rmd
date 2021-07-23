@@ -168,6 +168,7 @@ nrow(cc_data)
 nrow(loyalty_data)
 nrow(combine_cc_loyalty)
 ```
+
 2. All the transactions happened at Brew've Been Served were paid around 17 different credit cards. That means just 17 people always went there. It is less than other three popular locations which have 33 or 35 different visitors in the last two weeks. 
 
 ```{r}
@@ -184,8 +185,7 @@ visitor_count_for_location <- combine_cc_loyalty %>%
   gather(count_credit_cards, total_count, key = "key", value = "value")
 
 ggplot(visitor_count_for_location, aes(x = location)) +
-  geom_col(aes( y = value, fill=key),position = "dodge",width = .5) +
-  geom_text(aes(y = value, label= value),vjust =0)
+  geom_col(aes( y = value, fill=key),position = "dodge",width = .5)
 ```
 
 3. Although employees always went Katerina’s Café, Guy's Gyros, Hippokampos and Brew've Been Served, they did not spend too much money there. On the contrary, employees spent more at Abila Airport, Nationwide Refinery, Carlyle Chemical Inc. and Stewart and Sons Fabrication even though they did not purchase there frequently.
@@ -212,16 +212,30 @@ new_cc_data <- merge(cc_data, combine_cc_loyalty,
 
 new_cc_data <- new_cc_data[-c(488,497,507,513,674,683),] %>%
   select(timestamp,location, price,last4ccnum,date.x,loyaltynum)
-```
 
-```{r}
-nrow(new_cc_data)
+colnames(new_cc_data)[5] <- "date"
+
+new_loyalty_data <- merge(loyalty_data, combine_cc_loyalty,
+                              by=c('date','location','price','loyaltynum'),all=TRUE)
+
+new_loyalty_data <- new_loyalty_data[-c(610,412,465,415,612,468),] %>%
+  select(date,location, price,last4ccnum,loyaltynum)
+
+new_cc_loyalty_data <-  union(left_join(new_cc_data, new_loyalty_data),
+                              right_join(new_cc_data, new_loyalty_data))
+
+glimpse(new_cc_loyalty_data)
 ```
 
 
 ### 4.5 Discrepancies between vehicle, credit, and loyalty card data 
 
 Add the vehicle data to the analysis of the credit and loyalty card data,
+
+
+
+
+
 
 
 
@@ -263,14 +277,20 @@ For Katerina’s Café, Guy's Gyros and Hippokamposmost, most of employees went 
 
 As loyalty cards data is always generated from credit cards data, both the data should be same by right. However, the some transactions data in credit card dataset are not consistent with the data in loyalty dataset. There are 1490 and 1392 transactions in credit card dataset and loyalty dataset respectively. Also, just 1087 transactions can match based on the location, timestamp and price spent for each transaction.
 
-![](img/inconsistent.png){width =15%}
-
 To correct this issue, we can merge the transactions exiting in loyalty card data but not exiting in the credit card data to the credit card data in order to make up the missing transactions in credit card data, then we can get a more comprehensive transaction data for purchases and preferences. Because the reason for the inconsistency might be that some employees did not record transactions on loyalty card although they indeed purchase something using their credit card. For the same reason, some employees recorded the purchase on their loyalty card but they did not pay that using given credit card.
 
-![](img/inconsistent_resolve.png){width =15%}
+![](img/inconsistent_resolve.png){width=20%}
 
 
-2. Most popular locations are different with the locations with higher purchase amount.
+
+2. There are just 17 credit cards which were used frequently at Brew've Been Served on weekdays around 7am to 9am, far less than that of other three popular locations.
+
+![](img/compare_card_frequency.png){width=60%}
+
+For Brew've Been Served anomaly, we can follow up the employees who owned these credit cards to identify their relationships.
+
+
+3. Most popular locations are different with the locations with higher purchase amount.
 
 Although employees always went Katerina’s Café, Guy's Gyros, Hippokampos and Brew've Been Served, they did not spend too much money there. On the contrary, employees spent more at Abila Airport, Nationwide Refinery, Carlyle Chemical Inc. and Stewart and Sons Fabrication even though they did not purchase there frequently.
 
@@ -278,6 +298,8 @@ Although employees always went Katerina’s Café, Guy's Gyros, Hippokampos and 
 
 For this issue, we can  category the location to explore the transactions produced by different business. Because the price of a order may vary from business to business.
 
+
+### 5.3 
 
 
 
