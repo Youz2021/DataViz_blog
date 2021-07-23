@@ -61,7 +61,7 @@ We need to set up the environment and load all required packages first. The code
 ```{r}
 packages = c('ggiraph', 'plotly', 'DT', 'patchwork','plyr',
              'tidyverse','raster', 'sf', 'igraph', 'tidygraph', 
-             'ggraph', 'visNetwork', 
+             'ggraph', 'visNetwork', 'rgdal',
              'lubridate', 'clock','tmap','rmarkdown')
 
 for (p in packages){
@@ -228,9 +228,58 @@ glimpse(new_cc_loyalty_data)
 ```
 
 
-### 4.5 Discrepancies between vehicle, credit, and loyalty card data 
+### 4.5 Add vehicle data to the analysis of the credit and loyalty card data
 
-Add the vehicle data to the analysis of the credit and loyalty card data,
+
+### 4.6 Discrepancies between vehicle, credit, and loyalty card data 
+
+1. Add the vehicle data to the analysis of the credit and loyalty card data,
+
+```{r}
+bgmap <- raster("MC2/MC2-tourist.tif")
+
+tm_shape(bgmap) +
+tm_rgb(bgmap, r = 1,g = 2,b = 3,
+alpha = NA,
+saturation = 1,
+interpolate = TRUE,
+max.value = 255)
+
+Abila_st <- st_read(dsn = "MC2/Geospatial",
+layer = "Abila")
+
+gps$Timestamp <- date_time_parse(gps$Timestamp,
+zone = "",
+format = "%m/%d/%Y %H:%M:%S")
+
+gps$day <- as.factor(get_day(gps$Timestamp))
+
+gps_sf <- st_as_sf(gps,
+coords = c("long", "lat"),
+crs= 4326)
+
+gps_path <- gps_sf %>%
+group_by(id, day) %>%
+summarize(m = mean(Timestamp),
+do_union=FALSE) %>%
+st_cast("LINESTRING")
+```
+
+
+2. add path
+```{r}
+gps_path_selected <- gps_path %>%
+filter(id==35)
+tmap_mode("view")
+tm_shape(bgmap) +
+tm_rgb(bgmap, r = 1,g = 2,b = 3,
+alpha = NA,
+saturation = 1,
+interpolate = TRUE,
+max.value = 255) +
+tm_shape(gps_path_selected) + tm_lines()
+```
+
 
 
 
