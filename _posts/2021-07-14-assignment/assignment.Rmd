@@ -54,7 +54,7 @@ To get a better understanding about the relationship between employee and credit
 
 # 3. Data Preperation
 
-## 3.1 Install and load packages
+### 3.1 Install and load packages
 
 We need to set up the environment and load all required packages first. The code chunk below will install the packages if not yet installed, and load them to the environment.
 
@@ -72,7 +72,7 @@ for (p in packages){
 }
 ```
 
-## 3.2 Import data
+### 3.2 Import data
 
 The data was loaded using read.csv() of the readr package, which reads delimited files into a tibble.
 
@@ -83,7 +83,7 @@ gps <- read.csv("MC2/gps.csv")
 car_assignments <- read.csv("MC2/car-assignments.csv")
 ```
 
-## 3.3 Data processing
+### 3.3 Data processing
 
 1. Change variables to the proper data type and create new variables for further analysis.
 
@@ -160,9 +160,22 @@ glimpse(sum_by_location)
 ```
 
 
+6. Mapping the credit card and loyalty card data based on the transactions with same location, transaction timestamp and price.
+
+```{r}
+cards_mapping <- new_cc_data %>%
+  select(last4ccnum,loyaltynum) %>%
+  filter(loyaltynum>0) %>%
+  group_by(last4ccnum,loyaltynum) %>%
+  summarise(total_count = n()) %>%
+  arrange(desc(total_count))
+  
+```
+
+
 # 4. Data analysis and visualisation
 
-## 4.1 Most popular location
+### 4.1 Most popular location
 
 we identify the most popular locations based on shopping frequency and the amount of money spent. 
 
@@ -174,7 +187,7 @@ ggplot(sum_by_location, aes(x = location)) +
   theme(axis.text.x = element_text(angle = 90),legend.position="bottom")
 ```
 
-## 4.2 Most popular timeslot
+### 4.2 Most popular timeslot
 
 Based on the most popular location, we explore the most popular time people visit in 24 hours each day using heatmap graph, the darker the color is, the more popular the place is in this timeslot.
 
@@ -202,7 +215,7 @@ geom_tile(color = 'white',size = 0.1) +
   theme(axis.text.x = element_text(angle = 90),legend.position="bottom")
 ```
 
-## 4.3 Anomalies about credit card and loyalty data
+### 4.3 Anomalies about credit card and loyalty data
 
 1. All the transactions happened at Brew've Been Served were paid around 17 different credit cards. That means just 17 people always went there. It is less than other three popular locations which have 33 or 35 different visitors in the last two weeks. 
 
@@ -273,9 +286,9 @@ ggplot(new_cc_loyalty_data, aes(x= location,y= price, color ="orange")) +
   
 ```
 
-## 4.5 Add vehicle data to the analysis of the credit and loyalty card data
+### 4.5 Add vehicle data to the analysis of the credit and loyalty card data
 
-1. PLot the track events for each car on the map to identify their activities.
+1. Add and transform vehicle data for visualisation.
 
 ```{r}
 bgmap <- raster("MC2/Geospatial/MC2-tourist.tif")
@@ -303,9 +316,11 @@ gps_path2 <- gps_path2 %>%
 ```
 
 
+2. PLot the track events for each car on the map to identify their activities.
+
 ```{r}
 gps_path_selected <- gps_path2 %>%
-  filter(day %in% c(17),hour %in% c(19))
+  filter(day %in% c(12),hour %in% c(13))
 
 tmap_mode("view")
 tm_shape(bgmap) +tm_rgb(bgmap, r = 1,g = 2,b = 3,alpha = NA,saturation = 1,
@@ -316,36 +331,10 @@ tm_shape(gps_path_selected) +
 ```
 
 
-2. mapping_car
-
-```{r}
-
-```
-
-
-
-
-
-## 4.7 Mapping credit card and loyalty card
-
-Mapping the credit card and loyalty card data based on the transactions with same location, transaction timestamp and price.
-
-```{r}
-cards_mapping <- new_cc_data %>%
-select(last4ccnum,loyaltynum) %>%
-filter(loyaltynum>0) %>%
-group_by(last4ccnum,loyaltynum) %>%
-summarise(total_count = n()) %>%
-arrange(desc(total_count))
-
-cards_mapping_cc <- cards_mapping %>%
-  summarise(no_count=n())
-```
-
 
 # 5. Insights
 
-## Q1. Using just the credit and loyalty card data, identify the most popular locations, and when they are popular. What anomalies do you see? What corrections would you recommend to correct these anomalies? 
+### Q1. Analysis of the credit and loyalty card data
 
 ### 1.1 Most popular location and timeslot
 
@@ -369,7 +358,7 @@ The reason for the inconsistency might be that some employees did not record tra
 
 To correct this issue, we can merge the transactions exiting in loyalty card data but not exiting in the credit card data to the credit card data in order to make up the missing transactions in credit card data, then we can get a more comprehensive transaction data for purchases and preferences. 
 
-![](img/inconsistent_resolve.png){width=20%}
+![](img/inconsistent_resolve.png){width=35%}
 
 
 2. Most popular locations are different with the locations with higher purchase amount.
@@ -385,28 +374,31 @@ For this issue, we can  category the location to explore the transactions produc
 
 ![](img/price_vary.png){width=90%}
 
-4. Some locations are just popular o weekdays, for example, Abila Airport and Carlyle Chemical Inc.
+4. Some locations are just popular on weekdays, for example, Abila Airport and Carlyle Chemical Inc.
 
 Also, transactions in some locations are higher than regular in some days. For example, there were more transactions at Katerina’s Café on 8,11 and 18 January and more transactions at Brew've Been Served on 8, 14 and 15 January. We need to explore the actives on that days.
 
 ![](img/popular_location_date.png){width=90%}
 
+5. Some transactions produced around 3am at 'Kronos Mart'.
 
-## Q2: Add the vehicle data to your analysis of the credit and loyalty card data. How does your assessment of the anomalies in question 1 change based on this new data? What discrepancies between vehicle, credit, and loyalty card data do you find?
+![](img/3am_transaction.png){width=90%}
+
+
+### Q2: Add the vehicle data to your analysis of the credit and loyalty card data.
 
 ### 2.1 Assessment of the anomalies in credit and loyalty card data
 
 1. The reason why transactions of some locations, like Airport,Nationwide Refinery and Carlyle Chemical Inc. are not so frequent but the prices are higher than other locations might be that the transactions produced in those locations are for business of GAStech, since the employees went there are always the truck drivers. While the transactions produced in most popular locations, like Katerina’s Café, Guy's Gyros where are closed to GAStech office, are always related to general staff for lunch or dinner.
 
-Also, it explains why some locations just had transactions on weekdays. These locations are business partners with GAStech, employee always went there for business on weekdays.
+Also,t explains why some locations just had transactions on weekdays. These locations are business partners with GAStech, employee always went there for business on weekdays.
 
 ![](img/location_price.png){width=90%}
 
-2. 
-
+ 
 ### 2.2 Discrepancies between vehicle, credit, and loyalty card data
 
-1. The GPS tracks can not comply with transactions very well. 
+1. The GPS data can not comply with transactions very well. 
 
 As there is an anomalous transaction with amount is 10000 dollars happened at 'Frydos Autosupply n' More' on 13 January in credit and loyalty card data, and we knew that this employee also went to Ouzeri Elian on 17 January 19:30pm. However, we can not find out this employee by tracking the gps path based on carid.
 
@@ -414,16 +406,31 @@ As shown below, the id for cars been at 'Frydos Autosupply n' More' on 13 Jan ar
 
 ![](img/highest_price.png){width=90%}
 
-2. 
+2. There were some anomalous transactions happened around 3am in 'Kronos Mart', but we cannot find the gps path for these transactions.
 
-## Q3. Can you infer the owners of each credit card and loyalty card? What is your evidence? Where are there uncertainties in your method? Where are there uncertainties in the data?
-
-
+![](img/3am_data.png){width=50%}
 
 
-## Q4. Given the data sources provided, identify potential informal or unofficial relationships among GASTech personnel.
+### Q3.Infer the owners of each credit card and loyalty card.
+
+According to the card transactions and gps data of cars, we can find that there were three employees used their credit cards at 'Chostus Hotel' and we can identify their car id using GPS data. Then we can link credit card to the owner of the car.
+
+![](img/hotel_relation.png){width=90%}
 
 
+
+### Q4. Identify potential informal or unofficial relationships among GASTech personnel.
+
+1. According to the card transactions and vehicle data, we can find that both Elsa and Brand were engineers and they always went to the 'Chostus Hotel' together, they might be the couples. 
+
+![](img/hotel_relation.png){width=90%}
+
+
+### Q5. Evidence of suspicious activity
+
+1. Some executives might go and play golf together in the afternoon of 12 and 19 January.
+
+![](img/ceo.png){width=40%}
 
 
 
