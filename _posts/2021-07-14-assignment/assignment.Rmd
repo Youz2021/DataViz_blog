@@ -320,7 +320,7 @@ gps_path2 <- gps_path2 %>%
 
 ```{r}
 gps_path_selected <- gps_path2 %>%
-  filter(id %in% c(28))
+  filter(day %in% c(8,9), hour %in% c(21))
 
 tmap_mode("view")
 tm_shape(bgmap) +tm_rgb(bgmap, r = 1,g = 2,b = 3,alpha = NA,saturation = 1,
@@ -410,6 +410,9 @@ As shown below, the id for cars been at 'Frydos Autosupply n' More' on 13 Jan ar
 
 ![](img/3am_data.png){width=50%}
 
+3. Some employees went to 'Roberts and Sons' on 13 January around 13pm while no transactions produced there.
+
+![](img/gps_no_transaction.png){width=90%}
 
 ### Q3.Infer the owners of each credit card and loyalty card.
 
@@ -428,7 +431,7 @@ owner_card <- read.csv("MC2/Card.csv")
 
 owner_card <- owner_card %>%
   left_join(car_assignments, by ="CarID") %>%
-  select(last4ccnum,loyaltynum,CarID, LastName, FirstName,CurrentEmploymentTitle) %>%
+  select(last4ccnum,loyaltynum,CarID, LastName, FirstName,CurrentEmploymentType) %>%
   filter(CarID >0) 
 
 print(owner_card)
