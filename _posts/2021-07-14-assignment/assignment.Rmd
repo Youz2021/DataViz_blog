@@ -60,7 +60,7 @@ We need to set up the environment and load all required packages first. The code
 
 ```{r}
 packages = c('ggiraph', 'plotly', 'DT', 'patchwork','plyr','palmerpenguins',
-             'tidyverse','raster', 'sf', 'igraph', 'tidygraph', 
+             'tidyverse','raster', 'sf', 'igraph', 'tidygraph', 'mapview',
              'ggraph', 'visNetwork', 'rgdal','ggbeeswarm','ggforce',
              'lubridate', 'clock','tmap','rmarkdown')
 
@@ -181,7 +181,6 @@ Based on the most popular location, we explore the most popular time people visi
 ```{r}
 popular_time <- new_cc_loyalty_data %>%
   select(location,date,timestamp,price)
- # filter(location == "Katerina’s Café"|location == "Guy's Gyros" |location =="Hippokampos"|location == "Brew've Been Served") 
 
 popular_time$hour <- hour(popular_time$timestamp)
 
@@ -191,16 +190,13 @@ popular_time_count <- popular_time %>%
 
 popular_time_count <- popular_time_count %>%
   right_join(expand.grid(location = unique(popular_time$location),
-                       #date = unique(popular_time$date),
                        hour = c(1:23)),
              by =c('location','hour')) %>%
   replace_na(list(frequency = 0L))
 
 ggplot(popular_time_count,aes( hour,location, fill= frequency)) + 
 geom_tile(color = 'white',size = 0.1) + 
-  #facet_grid(~location) +
    scale_fill_distiller(palette = "orange",direction = 1)+
-  #scale_x_discr(breaks = popular_time_count$date[seq(1, length(popular_time_count$date), by = 2)])+
   scale_y_discrete()+
   scale_x_continuous(breaks = seq(1,24,2)) +
   theme(axis.text.x = element_text(angle = 90),legend.position="bottom")
@@ -241,7 +237,7 @@ ggplot(sum_by_location, aes(x = location)) +
   theme(axis.text.x = element_text(angle = 90),legend.position="bottom")
 ```
 
-3. Transactions in some locations are higher than regular in some days.
+3. Some locations are just popular on weekdays.
 
 ```{r}
 location_date <- new_cc_loyalty_data %>%
@@ -255,11 +251,14 @@ location_date <- location_date %>%
              by =c('location','date')) %>%
   replace_na(list(frequency = 0L))
 
-ggplot(location_date,aes(date, location, fill= frequency)) + 
+location_date$day <- as.factor(get_day(location_date$date))
+
+ggplot(location_date,aes(location,day, fill= frequency)) + 
 geom_tile(color = 'white',size = 0.1) + 
   scale_fill_distiller(palette = "orange",direction = 1)+
-  scale_x_date(breaks = new_cc_loyalty_data$date[seq(1, length(new_cc_loyalty_data$date), by = 2)])+
+  #scale_y_date(breaks = new_cc_loyalty_data$date[seq(1, length(new_cc_loyalty_data$date), by = 3)],labels = abbreviate)+
   scale_y_discrete(expand=c(0,0)) +
+  scale_x_discrete(expand=c(0,0)) +
   theme(axis.text.x = element_text(angle = 90),legend.position="bottom")
 
 ```
@@ -287,39 +286,41 @@ gps$Timestamp <- date_time_parse(gps$Timestamp,zone = "",format = "%m/%d/%Y %H:%
 
 gps$day <- as.factor(get_day(gps$Timestamp))
 
+gps$hour <-as.factor(get_hour(gps$Timestamp))
+
 gps_sf <- st_as_sf(gps,coords = c("long", "lat"),crs= 4326)
 
 gps_path <- gps_sf %>%
-  group_by(id, day) %>%
+  group_by(id, day, hour) %>%
   summarize(m = mean(Timestamp),do_union=FALSE) %>%
   st_cast("LINESTRING")
 
-gps_path_selected <- gps_path %>%
-  filter(id==35)
+p = npts(gps_path, by_feature = TRUE)
+gps_path2 <- cbind(gps_path, p)
 
-tmap_mode("view")
-tm_shape(bgmap) +tm_rgb(bgmap, r = 1,g = 2,b = 3,alpha = NA,saturation = 1,
-                        interpolate = TRUE,max.value = 255) +
-tm_shape(gps_path_selected) + 
-  #tm_lines(col = "orange")
-  tm_dots(size=.15, col="red")
+gps_path2 <- gps_path2 %>%
+  filter(p>1)
 ```
 
 
-2. 
+```{r}
+gps_path_selected <- gps_path2 %>%
+  filter(day %in% c(17),hour %in% c(19))
+
+tmap_mode("view")
+tm_shape(bgmap) +tm_rgb(bgmap, r = 1,g = 2,b = 3,alpha = NA,saturation = 1,
+                        interpolate = TRUE, max.value = 255) +
+tm_shape(gps_path_selected) + 
+  tm_lines(col = "orange")
+  #tm_dots(size=.15, col="red")
+```
 
 
+2. mapping_car
 
+```{r}
 
-
-
-
-## 4.6 Discrepancies between vehicle, credit, and loyalty card data 
-
-
-
-
-
+```
 
 
 
@@ -371,11 +372,7 @@ To correct this issue, we can merge the transactions exiting in loyalty card dat
 ![](img/inconsistent_resolve.png){width=20%}
 
 
-2. There are just 17 credit cards which were used frequently at Brew've Been Served on weekdays around 7am to 9am, far less than that of other three popular locations. For Brew've Been Served anomaly, we can follow up the employees who owned these credit cards to identify their relationships.
-
-![](img/compare_card_frequency.png){width=60%}
-
-3. Most popular locations are different with the locations with higher purchase amount.
+2. Most popular locations are different with the locations with higher purchase amount.
 
 Although employees always went Katerina’s Café, Guy's Gyros, Hippokampos and Brew've Been Served, they did not spend too much money there. On the contrary, employees spent more at Abila Airport, Nationwide Refinery, Carlyle Chemical Inc. and Stewart and Sons Fabrication even though they did not purchase there frequently.
 
@@ -384,11 +381,13 @@ For this issue, we can  category the location to explore the transactions produc
 
 ![](img/frequency_price.png){width=90%}
 
-4. The price of some transactions varies largely in the same location. For example, there is a transaction higher than others in 'Frydos Autosupply n' More'. We need to explore the anomalous transactions.
+3. The price of some transactions varies largely in the same location. For example, there is a transaction higher than others in 'Frydos Autosupply n' More'. We need to explore the anomalous transactions.
 
 ![](img/price_vary.png){width=90%}
 
-5. Transactions in some locations are higher than regular in some days. For example, there were more transactions at Katerina’s Café on 8,11 and 18 January. Also, there were more transactions at Brew've Been Served on 8, 14 and 15 January. We need to explore the actives on that days.
+4. Some locations are just popular o weekdays, for example, Abila Airport and Carlyle Chemical Inc.
+
+Also, transactions in some locations are higher than regular in some days. For example, there were more transactions at Katerina’s Café on 8,11 and 18 January and more transactions at Brew've Been Served on 8, 14 and 15 January. We need to explore the actives on that days.
 
 ![](img/popular_location_date.png){width=90%}
 
@@ -397,13 +396,32 @@ For this issue, we can  category the location to explore the transactions produc
 
 ### 2.1 Assessment of the anomalies in credit and loyalty card data
 
+1. The reason why transactions of some locations, like Airport,Nationwide Refinery and Carlyle Chemical Inc. are not so frequent but the prices are higher than other locations might be that the transactions produced in those locations are for business of GAStech, since the employees went there are always the truck drivers. While the transactions produced in most popular locations, like Katerina’s Café, Guy's Gyros where are closed to GAStech office, are always related to general staff for lunch or dinner.
 
+Also, it explains why some locations just had transactions on weekdays. These locations are business partners with GAStech, employee always went there for business on weekdays.
 
+![](img/location_price.png){width=90%}
+
+2. 
 
 ### 2.2 Discrepancies between vehicle, credit, and loyalty card data
 
+1. The GPS tracks can not comply with transactions very well. 
+
+As there is an anomalous transaction with amount is 10000 dollars happened at 'Frydos Autosupply n' More' on 13 January in credit and loyalty card data, and we knew that this employee also went to Ouzeri Elian on 17 January 19:30pm. However, we can not find out this employee by tracking the gps path based on carid.
+
+As shown below, the id for cars been at 'Frydos Autosupply n' More' on 13 Jan are 34, 15 and 16, while id for cars been 'Ouzeri Elia' on 17 Jan are 1, 22 and 17. We cannot find a common car which been these two locations.
+
+![](img/highest_price.png){width=90%}
+
+2. 
+
+## Q3. Can you infer the owners of each credit card and loyalty card? What is your evidence? Where are there uncertainties in your method? Where are there uncertainties in the data?
 
 
+
+
+## Q4. Given the data sources provided, identify potential informal or unofficial relationships among GASTech personnel.
 
 
 
