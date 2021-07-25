@@ -320,7 +320,7 @@ gps_path2 <- gps_path2 %>%
 
 ```{r}
 gps_path_selected <- gps_path2 %>%
-  filter(day %in% c(12),hour %in% c(13))
+  filter(id %in% c(28))
 
 tmap_mode("view")
 tm_shape(bgmap) +tm_rgb(bgmap, r = 1,g = 2,b = 3,alpha = NA,saturation = 1,
@@ -413,10 +413,26 @@ As shown below, the id for cars been at 'Frydos Autosupply n' More' on 13 Jan ar
 
 ### Q3.Infer the owners of each credit card and loyalty card.
 
-According to the card transactions and gps data of cars, we can find that there were three employees used their credit cards at 'Chostus Hotel' and we can identify their car id using GPS data. Then we can link credit card to the owner of the car.
+1. According to the card transactions and gps data of cars, we can find that there were three employees used their credit cards at 'Chostus Hotel' and we can identify their car id using GPS data. Then we can link credit card to the owner of the car.
 
 ![](img/hotel_relation.png){width=90%}
 
+2. Similarly, we can identify the owners of the credit cards used at 'Desafio Golf Course'. 
+
+![](img/ceo.png){width=90%}
+
+3. The owners of each credit card and loyalty card can be identified according to the transactions data, gps data for each car and owners of car data.
+
+```{r}
+owner_card <- read.csv("MC2/Card.csv")
+
+owner_card <- owner_card %>%
+  left_join(car_assignments, by ="CarID") %>%
+  select(last4ccnum,loyaltynum,CarID, LastName, FirstName,CurrentEmploymentTitle) %>%
+  filter(CarID >0) 
+
+print(owner_card)
+```
 
 
 ### Q4. Identify potential informal or unofficial relationships among GASTech personnel.
@@ -428,9 +444,9 @@ According to the card transactions and gps data of cars, we can find that there 
 
 ### Q5. Evidence of suspicious activity
 
-1. Some executives might go and play golf together in the afternoon of 12 and 19 January.
+1. Some executives might go and play golf together at 'Desafio Golf Course' in the afternoon of 12 and 19 January.
 
-![](img/ceo.png){width=40%}
+![](img/party_ceo.png){width=90%}
 
 
 
